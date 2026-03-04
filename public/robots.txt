@@ -4,7 +4,7 @@ Allow: /
 Disallow: /api/
 
 # Sitemaps
-Sitemap: https://pritpatel.dev/sitemap.xml
+Sitemap: https://pritdev.netlify.app/sitemap.xml
 
 # Crawl-delay
 Crawl-delay: 1
