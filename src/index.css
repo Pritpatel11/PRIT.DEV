@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --cyber-blue: #00f2ff;
+  --cyber-purple: #bc13fe;
+  --cyber-pink: #ff007f;
+
+  /* Theme Colors (Fixed Dark) */
+  --bg-main: #050505;
+  --bg-secondary: #0a0a0a;
+  --text-main: #ffffff;
+  --text-dim: rgba(255, 255, 255, 0.5);
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --card-hover: rgba(255, 255, 255, 0.05);
+
+  --cyber-accent: #00f2ff;
+  --cyber-accent-rgb: 0, 242, 255;
+}
+
+html,
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  @apply overflow-x-hidden transition-colors duration-500;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  cursor: none;
+}
+
+@media (max-width: 1024px) {
+
+  html,
+  body {
+    cursor: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+
+
+
+
+/* Base Styles */
+.bg-grid {
+  background-image: linear-gradient(to right, rgba(var(--cyber-accent-rgb), 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(var(--cyber-accent-rgb), 0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Glassmorphism */
+.glass {
+  background-color: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+}
+
+.glass-card {
+  @apply rounded-xl transition-all duration-300;
+  background-color: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+
+  &:hover {
+    background-color: var(--card-hover);
+    border-color: var(--cyber-accent);
+  }
+}
+
+/* Neon Glows */
+.neon-glow-blue {
+  text-shadow: 0 0 10px rgba(var(--cyber-accent-rgb), 0.5), 0 0 20px rgba(var(--cyber-accent-rgb), 0.3);
+}
+
+.neon-border-blue {
+  box-shadow: 0 0 10px rgba(var(--cyber-accent-rgb), 0.2), inset 0 0 5px rgba(var(--cyber-accent-rgb), 0.1);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-cyber-black;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-cyber-gray rounded-full hover:bg-cyber-blue transition-colors;
+}
+
+/* Animations */
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+.scanline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to bottom, rgba(0, 242, 255, 0), rgba(0, 242, 255, 0.2), rgba(0, 242, 255, 0));
+  animation: scanline 4s linear infinite;
+  pointer-events: none;
+}

@@ -1,0 +1,31 @@
+import { motion } from 'framer-motion';
+
+const Button = ({
+    children,
+    variant = 'primary',
+    className = '',
+    icon: Icon,
+    ...props
+}) => {
+    const variants = {
+        primary: 'bg-cyber-blue text-black font-bold hover:shadow-[0_0_20px_rgba(var(--cyber-accent-rgb),0.6)]',
+        secondary: 'bg-transparent border border-cyber-blue text-cyber-blue hover:bg-cyber-blue/10 hover:shadow-[0_0_15px_rgba(var(--cyber-accent-rgb),0.3)]',
+        outline: 'bg-transparent border border-[var(--glass-border)] text-[var(--text-main)] hover:border-cyber-blue hover:bg-white/5 dark:hover:bg-white/5',
+        ghost: 'bg-transparent text-[var(--text-main)] opacity-70 hover:opacity-100 hover:bg-white/5 dark:hover:bg-white/5',
+        neon: 'bg-transparent border border-cyber-purple text-cyber-purple hover:bg-cyber-purple/10 hover:shadow-[0_0_15px_rgba(188,19,254,0.3)]',
+    };
+
+    return (
+        <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className={`px-6 py-2.5 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 group ${variants[variant]} ${className}`}
+            {...props}
+        >
+            {children}
+            {Icon && <Icon size={18} className="group-hover:translate-x-1 transition-transform" />}
+        </motion.button>
+    );
+};
+
+export default Button;

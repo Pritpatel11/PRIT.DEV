@@ -1,0 +1,38 @@
+export const testimonials = [
+    {
+        id: 1,
+        name: 'Patel Ramanbhai',
+        role: 'Founder',
+        company: 'Neeta Engineering Works',
+        rating: 5,
+        review: 'Prit transformed our outdated web presence into a modern, professional showcase. His attention to detail and understanding of our industrial brand was exceptional. The website now truly represents our decades of manufacturing expertise.',
+        project: 'Company Showcase Website',
+    },
+    {
+        id: 2,
+        name: 'Patel Harshbhai',
+        role: 'Founder',
+        company: 'DEV Corporation',
+        rating: 5,
+        review: 'Working with Prit was a game-changer for our digital identity. He built an SEO-optimized platform that highlights our HT/LT product catalog beautifully. The performance and UI quality exceeded our expectations.',
+        project: 'Digital Brand Identity',
+    },
+    {
+        id: 3,
+        name: 'Sneha Patel',
+        role: 'Startup Founder',
+        company: 'TechVista Solutions',
+        rating: 5,
+        review: 'Prit delivered a stunning, animation-rich landing page that perfectly captured our brand vision. His creative coding skills with GSAP and scroll-driven animations are truly next-level. Highly recommended!',
+        project: 'Interactive Landing Page',
+    },
+    {
+        id: 4,
+        name: 'Vikram Singh',
+        role: 'Product Manager',
+        company: 'CloudNine Analytics',
+        rating: 4,
+        review: 'Impressive work on our data dashboard. Prit has a rare ability to make complex data look elegant and accessible. His frontend architecture is clean and scalable.',
+        project: 'Analytics Dashboard UI',
+    },
+];
