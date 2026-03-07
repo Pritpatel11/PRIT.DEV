@@ -3,13 +3,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { MessageSquare, X, Send, User, Bot, Sparkles } from 'lucide-react';
 
 const KNOWLEDGE_BASE = {
-    skills: "Prit is proficient in React, Node.js, GSAP, and Tailwind CSS. He loves building premium, animated digital experiences.",
-    projects: "He has built everything from AI dashboards to high-end industrial websites. Check out the 'Work' page for details!",
-    contact: "You can reach Prit via email at contact@pritpatel.dev or follow him on GitHub @pritpatel11.",
-    favorite: "His favorite tech stack is the 'Cyber Stack': React + GSAP + Tailwind CSS. He loves the intersection of design and code.",
-    about: "Prit is a B.Tech IT student and a passionate Full Stack Developer who thrives on creating immersive web environments.",
-    greeting: "Hello! I'm the Prit Bot. Ask me anything about Prit's skills, projects, or background!",
-    unknown: "I'm still learning about Prit! Try asking about his skills, projects, or how to contact him."
+    skills: "Prit Dev is proficient in React, Node.js, GSAP, and Tailwind CSS. He specializes in building premium, animated digital experiences.",
+    projects: "Prit Dev has built everything from AI dashboards to high-end industrial websites. Explore his portfolio at 'Work' page!",
+    contact: "You can reach Prit Dev via email at contact@pritpatel.dev or follow him on GitHub @pritpatel11.",
+    favorite: "Prit Dev's favorite tech stack is the 'Cyber Stack': React + GSAP + Tailwind CSS.",
+    about: "Prit Dev is a passionate Full Stack Developer who thrives on creating immersive web environments.",
+    greeting: "Hello! I'm the Prit Dev Bot. Ask me anything about Prit's skills, projects, or background!",
+    unknown: "I'm still learning about Prit Dev! Try asking about his skills, projects, or how to contact him."
 };
 
 const PritBot = () => {
