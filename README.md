@@ -3,7 +3,7 @@
 A futuristic, animation-rich developer portfolio built with modern web technologies. Features cyberpunk aesthetics, GSAP scroll animations, creative custom cursor, and a terminal-style contact form with Google Sheets integration.
 
 ## ⚡ Live Demo
-🔗 [https://pritpatel.dev](https://pritpatel.dev)
+🔗 [https://pritpatel.dev](https://pritdev.netlify.app)
 
 ## ⚙️ Tech Stack
 - **Frontend:** React.js, Vite
