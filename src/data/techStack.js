@@ -10,8 +10,8 @@ import {
     SiCss3,
     SiJavascript,
     SiMongodb,
-    SiGreensock,   
-    SiFigma, 
+    SiGreensock,
+    SiFigma,
     SiMysql,
 } from 'react-icons/si';
 
@@ -24,9 +24,9 @@ export const techStack = [
     { name: 'Node.js', icon: SiNodedotjs, color: '#339933' },
     { name: 'Python', icon: SiPython, color: '#3776AB' },
     { name: 'Tailwind', icon: SiTailwindcss, color: '#06B6D4' },
-    { name: 'MongoDB', icon: SiMongodb, color: '#3776AB'},
-    {name:'MySQL',icon:SiMysql,color:'#3776AB'},
-    { name: 'GSAP', icon: SiGreensock, color: '#3776AB'},
+    { name: 'MongoDB', icon: SiMongodb, color: '#47A248' },
+    { name: 'MySQL', icon: SiMysql, color: '#4479A1' },
+    { name: 'GSAP', icon: SiGreensock, color: '#88CE02' },
     { name: 'git', icon: SiGit, color: '#F05032' },
-    { name: 'figma', icon: SiFigma, color: '#F05032' },
+    { name: 'figma', icon: SiFigma, color: '#F24E1E' },
 ];

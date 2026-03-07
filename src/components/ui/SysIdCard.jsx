@@ -75,8 +75,11 @@ const SysIdCard = ({ tech }) => {
                 <div className="relative z-10 flex flex-col items-center gap-3">
                     <tech.icon
                         size={36}
-                        className={`transition-all duration-300 ${isHovered ? 'text-white' : 'text-white/40'}`}
-                        style={{ filter: isHovered ? `drop-shadow(0 0 12px ${tech.color || '#fff'}66)` : 'none' }}
+                        className="transition-all duration-300"
+                        style={{
+                            color: isHovered ? tech.color : 'rgba(255, 255, 255, 0.4)',
+                            filter: isHovered ? `drop-shadow(0 0 12px ${tech.color}66)` : 'none'
+                        }}
                     />
                     <p className={`text-xs font-bold tracking-[0.2em] transition-colors duration-300 ${isHovered ? 'text-cyber-blue shadow-cyber-blue' : 'text-white/40'}`}>
                         {tech.name.toUpperCase()}
