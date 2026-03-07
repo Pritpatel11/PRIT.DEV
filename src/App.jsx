@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import AppRoutes from './routes/AppRoutes.jsx';
-import Navbar from './components/layout/Navbar.jsx';
+import FloatingNav from './components/layout/FloatingNav.jsx';
 import Footer from './components/layout/Footer.jsx';
+import Header from './components/layout/Header.jsx';
 import CustomCursor from './components/ui/CustomCursor.jsx';
 import AccentSwitcher from './components/ui/AccentSwitcher.jsx';
 import Terminal from './components/ui/Terminal.jsx';
-import PritBot from './components/ui/PritBot.jsx';
 import Preloader from './components/ui/Preloader.jsx';
 
 function App() {
@@ -31,11 +31,11 @@ function App() {
                         <CustomCursor />
                         <AccentSwitcher />
                         <Terminal />
-                        <PritBot />
 
-                        <Navbar />
+                        <Header />
+                        <FloatingNav />
 
-                        <main className="flex-grow z-10">
+                        <main className="flex-grow z-10 pb-24">
                             <AppRoutes />
                         </main>
 

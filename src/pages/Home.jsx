@@ -10,6 +10,8 @@ import Testimonials from '../components/ui/Testimonials.jsx';
 import { projects } from '../data/projects.js';
 import TextReveal from '../components/animations/TextReveal.jsx';
 import DecryptedText from '../components/animations/DecryptedText.jsx';
+import ParallaxText from '../components/animations/ParallaxText.jsx';
+import GlitchReveal from '../components/animations/GlitchReveal.jsx';
 import Magnetic from '../components/animations/Magnetic.jsx';
 import SEO from '../components/ui/SEO.jsx';
 
@@ -66,14 +68,15 @@ const Home = () => {
                     </FadeIn>
                 </div>
                 {/* Hero Background Elements */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl aspect-square opacity-20 pointer-events-none">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl aspect-square opacity-20 pointer-events-none z-[-1]">
                     <div className="w-full h-full rounded-full bg-glow-gradient from-cyber-blue/40 to-transparent blur-3xl" />
                 </div>
             </section>
 
             {/* Tech Stack Section */}
-            <section className="py-24 relative">
-                <div className="container mx-auto px-6 text-center mb-16">
+            <section className="py-24 relative overflow-hidden">
+                <ParallaxText baseVelocity={-2}>ENGINEERING</ParallaxText>
+                <div className="container mx-auto px-6 text-center mb-16 relative z-10">
                     <SlideIn direction="up">
                         <h2 className="text-3xl md:text-5xl font-black mb-4 uppercase">
                             TECH <span className="text-cyber-purple">STACK</span>
@@ -88,8 +91,9 @@ const Home = () => {
             </section>
 
             {/* Project Showcase Section */}
-            <section className="py-24 border-t border-white/5">
-                <div className="container mx-auto px-6">
+            <section className="py-24 border-t border-white/5 relative overflow-hidden">
+                <ParallaxText baseVelocity={2}>SHOWCASE</ParallaxText>
+                <div className="container mx-auto px-6 relative z-10">
                     <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
                         <SlideIn direction="left">
                             <h2 className="text-3xl md:text-5xl font-black">
@@ -126,8 +130,8 @@ const Home = () => {
                 <div className="container mx-auto px-6 text-center relative z-10">
                     <FadeIn>
                         <h2 className="text-3xl sm:text-4xl md:text-7xl font-black mb-6 md:mb-8 leading-tight">
-                            LET'S BUILD SOMETHING<br />
-                            <span className="text-cyber-blue">EXTRAORDINARY.</span>
+                            <GlitchReveal text="LET'S BUILD SOMETHING" duration={800} /><br />
+                            <span className="text-cyber-blue"><GlitchReveal text="EXTRAORDINARY." delay={0.3} duration={1000} /></span>
                         </h2>
                         <Link to="/contact" data-cursor="contact">
                             <Button variant="neon" className="px-12 py-4 text-xl" icon={Send}>

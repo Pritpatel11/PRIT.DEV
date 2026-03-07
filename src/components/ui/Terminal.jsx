@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Terminal as TerminalIcon, X, ChevronRight, Minimize2, Maximize2 } from 'lucide-react';
+import { Terminal as TerminalIcon, X, Maximize2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { projects } from '../../data/projects.js';
 
 const COMMANDS = {
     help: 'List all available commands',
@@ -15,11 +16,11 @@ const COMMANDS = {
 
 const Terminal = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const [isMinimized, setIsMinimized] = useState(false);
     const [input, setInput] = useState('');
     const [history, setHistory] = useState([
-        { type: 'system', content: 'SYSTEM_READY // PRIT_PORTFOLIO_OS v2.4.0' },
-        { type: 'system', content: 'Type "help" to see available commands.' }
+        { type: 'system', content: 'INITIALIZING COMMAND CENTER...' },
+        { type: 'system', content: 'SYS.ID: PRIT_PATEL_v2.5.0' },
+        { type: 'system', content: 'Type "help" to see available protocols.' }
     ]);
     const scrollRef = useRef(null);
     const inputRef = useRef(null);
@@ -30,6 +31,13 @@ const Terminal = () => {
             scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
         }
     }, [history]);
+
+    // Auto-focus input when terminal opens
+    useEffect(() => {
+        if (isOpen && inputRef.current) {
+            setTimeout(() => inputRef.current.focus(), 100);
+        }
+    }, [isOpen]);
 
     const handleCommand = (cmd) => {
         const fullCmd = cmd.trim().toLowerCase();
@@ -51,22 +59,25 @@ const Terminal = () => {
                 break;
             case 'projects':
                 newHistory.push({ type: 'output', content: 'FETCHING_PROJECTS...' });
-                newHistory.push({ type: 'output', content: '1. Duo Studio (Interactive Design)' });
-                newHistory.push({ type: 'output', content: '2. Cyberspace Engine (Real-time Simulation)' });
-                newHistory.push({ type: 'output', content: '3. Neural Analytics (AI Dashboard)' });
+                projects.forEach((project, index) => {
+                    newHistory.push({ type: 'output', content: `${index + 1}. ${project.title} (${project.category})` });
+                });
                 break;
             case 'contact':
                 newHistory.push({ type: 'output', content: 'GITHUB: github.com/pritpatel11' });
-                newHistory.push({ type: 'output', content: 'EMAIL: contact@pritpatel.dev' });
+                newHistory.push({ type: 'output', content: 'EMAIL: pritpatel1179@gmail.com' });
                 break;
             case 'clear':
-                setHistory([]);
+                setHistory([{ type: 'system', content: 'SYSTEM_CLEARED' }]);
                 return;
             case 'goto':
                 const path = args[0];
                 if (['work', 'about', 'contact', 'home'].includes(path)) {
                     newHistory.push({ type: 'system', content: `NAVIGATING_TO: /${path}` });
-                    navigate(path === 'home' ? '/' : `/${path}`);
+                    setTimeout(() => {
+                        navigate(path === 'home' ? '/' : `/${path}`);
+                        setIsOpen(false);
+                    }, 500);
                 } else {
                     newHistory.push({ type: 'error', content: `ERROR: Path "/${path || ''}" not found.` });
                 }
@@ -104,88 +115,98 @@ const Terminal = () => {
     };
 
     return (
-        <div className="fixed bottom-8 right-8 z-[100] flex flex-col items-end gap-4">
+        <>
             <AnimatePresence>
-                {isOpen && !isMinimized && (
+                {isOpen && (
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.9, y: 50 }}
-                        animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.9, y: 50 }}
-                        className="w-[90vw] md:w-[500px] h-[400px] glass-card overflow-hidden flex flex-col shadow-2xl border-cyber-blue/20"
+                        initial={{ opacity: 0, backdropFilter: 'blur(0px)' }}
+                        animate={{ opacity: 1, backdropFilter: 'blur(20px)' }}
+                        exit={{ opacity: 0, backdropFilter: 'blur(0px)' }}
+                        className="fixed inset-0 z-[150] bg-black/80 flex flex-col justify-end p-4 md:p-12 overflow-hidden"
+                        onClick={() => inputRef.current?.focus()}
                     >
-                        {/* Terminal Header */}
-                        <div className="bg-white/5 px-4 py-2 flex items-center justify-between border-b border-white/10">
-                            <div className="flex items-center gap-2">
-                                <TerminalIcon size={14} className="text-cyber-blue" />
-                                <span className="text-[10px] font-bold tracking-widest text-white/40">PORTFOLIO_TERMINAL_v2.4.0</span>
-                            </div>
-                            <div className="flex items-center gap-3">
-                                <button onClick={() => setIsMinimized(true)} className="text-white/40 hover:text-white transition-colors">
-                                    <Minimize2 size={14} />
-                                </button>
-                                <button onClick={() => setIsOpen(false)} className="text-white/40 hover:text-red-500 transition-colors">
-                                    <X size={14} />
-                                </button>
-                            </div>
+                        {/* Massive Background Typography */}
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-5 flex flex-col items-center justify-center w-full">
+                            <h1 className="text-[15vw] font-black leading-none tracking-tighter text-transparent w-full text-center" style={{ WebkitTextStroke: '2px rgba(255,255,255,0.5)' }}>COMMAND</h1>
+                            <h1 className="text-[15vw] font-black leading-none tracking-tighter text-transparent w-full text-center" style={{ WebkitTextStroke: '2px rgba(255,255,255,0.5)' }}>CENTER</h1>
                         </div>
 
-                        {/* Terminal Body */}
-                        <div
-                            ref={scrollRef}
-                            className="flex-grow p-4 font-mono text-xs overflow-y-auto space-y-2 custom-scrollbar bg-black/80"
-                            onClick={() => inputRef.current?.focus()}
-                        >
-                            {history.map((line, i) => (
-                                <div key={i} className={`flex gap-2 ${line.type === 'input' ? 'text-white' :
-                                    line.type === 'system' ? 'text-cyber-blue' :
-                                        line.type === 'error' ? 'text-red-400' : 'text-white/60'
-                                    }`}>
-                                    {line.type === 'input' && <span className="text-cyber-blue font-bold">$</span>}
-                                    <span className="break-all">{line.content}</span>
-                                </div>
-                            ))}
-                            <form onSubmit={handleSubmit} className="flex gap-2 items-center">
-                                <span className="text-cyber-blue font-bold">$</span>
-                                <input
-                                    ref={inputRef}
-                                    type="text"
-                                    value={input}
-                                    onChange={(e) => setInput(e.target.value)}
-                                    className="bg-transparent border-none outline-none text-white w-full caret-cyber-blue"
-                                    autoFocus
-                                />
-                            </form>
+                        {/* Scanline Effect */}
+                        <div className="absolute inset-0 pointer-events-none opacity-20">
+                            <div className="w-full h-8 bg-cyber-blue shadow-[0_0_50px_rgba(0,242,255,0.5)] animate-scanline mix-blend-overlay" />
+                        </div>
+
+                        {/* Top Header */}
+                        <div className="absolute top-8 left-8 right-8 flex justify-between items-start z-10">
+                            <div>
+                                <h2 className="text-cyber-blue font-bold tracking-[0.5em] text-sm md:text-xl">SYS.TERMINAL</h2>
+                                <p className="text-white/40 text-xs mt-1 md:text-sm uppercase tracking-widest">Awaiting Input Protocol</p>
+                            </div>
+                            <button onClick={(e) => { e.stopPropagation(); setIsOpen(false); }} className="text-white/60 hover:text-white hover:rotate-90 transition-all p-2 bg-white/5 rounded-full glass border border-white/10">
+                                <X size={24} />
+                            </button>
+                        </div>
+
+                        {/* Terminal Window (Bottom aligned) */}
+                        <div className="w-full max-w-5xl mx-auto h-[60vh] flex flex-col relative z-10 bg-black/40 glass border border-white/10 rounded-2xl md:p-8 p-4 shadow-[0_0_50px_rgba(0,0,0,0.8)]">
+                            <div
+                                ref={scrollRef}
+                                className="flex-grow font-mono text-sm md:text-base overflow-y-auto space-y-3 custom-scrollbar pr-4 text-white/80"
+                            >
+                                {history.map((line, i) => (
+                                    <motion.div
+                                        initial={{ opacity: 0, x: -10 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        key={i}
+                                        className={`flex gap-3 leading-relaxed ${line.type === 'input' ? 'text-white' :
+                                            line.type === 'system' ? 'text-cyber-blue drop-shadow-[0_0_8px_rgba(0,242,255,0.5)]' :
+                                                line.type === 'error' ? 'text-red-400 drop-shadow-[0_0_8px_rgba(248,113,113,0.5)]' :
+                                                    'text-white/70'
+                                            }`}>
+                                        {line.type === 'input' ? (
+                                            <span className="text-cyber-purple font-black opacity-80 select-none">❯</span>
+                                        ) : (
+                                            <span className="opacity-0 select-none">❯</span>
+                                        )}
+                                        <span className="break-all">{line.content}</span>
+                                    </motion.div>
+                                ))}
+
+                                <form onSubmit={handleSubmit} className="flex gap-3 items-center mt-4">
+                                    <span className="text-cyber-blue font-black animate-pulse select-none">❯</span>
+                                    <input
+                                        ref={inputRef}
+                                        type="text"
+                                        value={input}
+                                        onChange={(e) => setInput(e.target.value)}
+                                        className="bg-transparent border-none outline-none text-white w-full caret-cyber-blue font-bold tracking-wide"
+                                        spellCheck="false"
+                                        autoComplete="off"
+                                    />
+                                </form>
+                            </div>
                         </div>
                     </motion.div>
                 )}
             </AnimatePresence>
 
-            {/* Minimized Indicator / Toggle Button */}
-            <div className="flex gap-4">
-                {isMinimized && isOpen && (
-                    <motion.button
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        onClick={() => setIsMinimized(false)}
-                        className="glass px-4 py-2 rounded-full border-cyber-blue/30 text-[10px] font-bold tracking-widest text-cyber-blue flex items-center gap-2 shadow-lg neon-border-blue"
-                    >
-                        <Maximize2 size={12} /> RESTORE_TERMINAL
-                    </motion.button>
-                )}
-
+            {/* Launch Button (Visible when closed) */}
+            <div className={`fixed ${isOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'} bottom-8 right-8 z-[100] transition-opacity duration-300`}>
                 <button
-                    onClick={() => {
-                        if (!isOpen) setIsOpen(true);
-                        else setIsMinimized(!isMinimized);
-                    }}
+                    onClick={() => setIsOpen(true)}
                     data-cursor="terminal"
-                    className={`w-12 h-12 glass rounded-full flex items-center justify-center transition-all shadow-lg ${isOpen ? 'border-cyber-blue text-cyber-blue neon-border-blue' : 'border-white/10 text-white/50 hover:text-white'
-                        }`}
+                    className="w-14 h-14 glass rounded-full flex items-center justify-center transition-all shadow-lg border-white/10 text-white hover:text-cyber-blue hover:border-cyber-blue/50 group"
                 >
-                    <TerminalIcon size={20} />
+                    <TerminalIcon size={24} className="group-hover:scale-110 transition-transform" />
+
+                    {/* Ping Animation Indicator */}
+                    <span className="absolute -top-1 -right-1 flex h-4 w-4">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyber-blue opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-4 w-4 bg-cyber-blue border border-black"></span>
+                    </span>
                 </button>
             </div>
-        </div>
+        </>
     );
 };
 

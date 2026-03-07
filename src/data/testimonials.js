@@ -10,7 +10,7 @@ export const testimonials = [
     },
     {
         id: 2,
-        name: 'Patel Harshbhai',
+        name: 'Patel Hareshbhai',
         role: 'Founder',
         company: 'DEV Corporation',
         rating: 5,

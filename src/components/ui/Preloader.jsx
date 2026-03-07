@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const steps = [
-    { text: "Scanning Modules...", status: "[OK]", delay: 0.5 },
-    { text: "Initializing Cyber-Core...", status: "[DONE]", delay: 1.2 },
-    { text: "Loading Prit's DNA...", status: "[100%]", delay: 2.2 },
+    { text: "|| श्री राम ||", status: "[OK]", delay: 0.5 },
+    { text: "System Alignment: DHARMA v1.0...", status: "[PASS]", delay: 1.2 },
+    { text: "Booting Engine...", status: "[READY]", delay: 2.2 },
 ];
 
 const Preloader = ({ onComplete }) => {
