@@ -50,6 +50,7 @@ const AccentSwitcher = () => {
             </AnimatePresence>
 
             <button
+                aria-label="Toggle theme"
                 onClick={() => setIsOpen(!isOpen)}
                 data-cursor="theme"
                 className="w-12 h-12 glass rounded-full flex items-center justify-center text-cyber-blue hover:scale-110 transition-all shadow-lg neon-border-blue"
