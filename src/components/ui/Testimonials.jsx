@@ -105,6 +105,7 @@ const Testimonials = () => {
                     {/* Navigation */}
                     <div className="flex items-center justify-center gap-6 mt-10">
                         <button
+                            aria-label="Previous Testimonial"
                             onClick={prev}
                             className="p-3 border border-white/10 rounded-full hover:border-cyber-blue/50 hover:bg-cyber-blue/5 transition-all group"
                         >
@@ -116,6 +117,7 @@ const Testimonials = () => {
                             {testimonials.map((_, i) => (
                                 <button
                                     key={i}
+                                    aria-label={`Go to testimonial ${i + 1}`}
                                     onClick={() => { setDirection(i > active ? 1 : -1); setActive(i); }}
                                     className={`h-1.5 rounded-full transition-all duration-300 ${i === active ? 'w-8 bg-cyber-blue' : 'w-1.5 bg-white/20 hover:bg-white/40'
                                         }`}
@@ -124,6 +126,7 @@ const Testimonials = () => {
                         </div>
 
                         <button
+                            aria-label="Next Testimonial"
                             onClick={next}
                             className="p-3 border border-white/10 rounded-full hover:border-cyber-blue/50 hover:bg-cyber-blue/5 transition-all group"
                         >
