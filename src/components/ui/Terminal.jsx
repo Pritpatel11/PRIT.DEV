@@ -142,7 +142,7 @@ const Terminal = () => {
                                 <h2 className="text-cyber-blue font-bold tracking-[0.5em] text-sm md:text-xl">SYS.TERMINAL</h2>
                                 <p className="text-white/40 text-xs mt-1 md:text-sm uppercase tracking-widest">Awaiting Input Protocol</p>
                             </div>
-                            <button onClick={(e) => { e.stopPropagation(); setIsOpen(false); }} className="text-white/60 hover:text-white hover:rotate-90 transition-all p-2 bg-white/5 rounded-full glass border border-white/10">
+                            <button aria-label="Close terminal" onClick={(e) => { e.stopPropagation(); setIsOpen(false); }} className="text-white/60 hover:text-white hover:rotate-90 transition-all p-2 bg-white/5 rounded-full glass border border-white/10">
                                 <X size={24} />
                             </button>
                         </div>
@@ -193,6 +193,7 @@ const Terminal = () => {
             {/* Launch Button (Visible when closed) */}
             <div className={`fixed ${isOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'} bottom-8 right-8 z-[100] transition-opacity duration-300`}>
                 <button
+                    aria-label="Open terminal"
                     onClick={() => setIsOpen(true)}
                     data-cursor="terminal"
                     className="w-14 h-14 glass rounded-full flex items-center justify-center transition-all shadow-lg border-white/10 text-white hover:text-cyber-blue hover:border-cyber-blue/50 group"

@@ -77,7 +77,7 @@ const PritBot = () => {
                                     </div>
                                 </div>
                             </div>
-                            <button onClick={() => setIsOpen(false)} className="opacity-40 hover:opacity-100 transition-opacity">
+                            <button aria-label="Close chat" onClick={() => setIsOpen(false)} className="opacity-40 hover:opacity-100 transition-opacity">
                                 <X size={16} />
                             </button>
                         </div>
@@ -122,6 +122,7 @@ const PritBot = () => {
                                     className="flex-grow bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-[11px] text-white outline-none focus:border-cyber-purple/50 transition-colors"
                                 />
                                 <button
+                                    aria-label="Send message"
                                     onClick={handleSend}
                                     className="w-10 h-10 bg-cyber-purple/20 text-cyber-purple rounded-xl flex items-center justify-center hover:bg-cyber-purple hover:text-white transition-all"
                                 >
@@ -134,6 +135,7 @@ const PritBot = () => {
             </AnimatePresence>
 
             <button
+                aria-label={isOpen ? "Close chat" : "Open chat"}
                 onClick={() => setIsOpen(!isOpen)}
                 data-cursor="ai bot"
                 className={`w-12 h-12 glass rounded-full flex items-center justify-center transition-all shadow-lg ${isOpen ? 'border-cyber-purple text-cyber-purple shadow-[0_0_15px_rgba(var(--cyber-accent-rgb),0.3)]' : 'opacity-50 hover:opacity-100'
