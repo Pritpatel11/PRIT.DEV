@@ -1,0 +1,1 @@
+## 2024-03-26 - Missing ARIA Labels on Icon Buttons\n**Learning:** Found several icon-only buttons (like theme switcher, close buttons, navigation toggles) lacking ARIA labels, making them inaccessible to screen readers.\n**Action:** Add descriptive ARIA labels to these buttons to improve accessibility without changing visual design.
