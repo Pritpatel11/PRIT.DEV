@@ -194,16 +194,33 @@ const Terminal = () => {
                             <div className="w-full h-10 bg-cyber-blue animate-scanline" />
                         </div>
 
-                        {/* Top Header */}
-                        <div className="absolute top-8 left-8 right-8 flex justify-between items-start z-10">
-                            <div>
-                                <h2 className="text-cyber-blue font-bold tracking-[0.5em] text-sm md:text-xl">SYS.TERMINAL</h2>
-                                <p className="text-white/40 text-xs mt-1 md:text-sm uppercase tracking-widest">Awaiting Input Protocol</p>
+                        {/* Terminal Main Window */}
+                        <div className="w-full max-w-5xl bg-black/80 rounded-2xl overflow-hidden shadow-2xl border border-white/10 glass flex flex-col relative z-10 scale-95 md:scale-100">
+                            {/* Terminal Header (Apple Style) */}
+                            <div className="flex items-center gap-4 p-4 bg-white/5 border-b border-white/10">
+                                <div className="flex gap-2 items-center">
+                                    <div className="w-3 h-3 rounded-full bg-[#FF5F56] cursor-pointer hover:scale-110 transition-transform flex items-center justify-center group/close" onClick={() => setIsOpen(false)}>
+                                        <X size={8} className="text-black opacity-0 group-hover/close:opacity-100 transition-opacity" />
+                                    </div>
+                                    <div className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
+                                    <div className="w-3 h-3 rounded-full bg-[#27C93F]" />
+                                </div>
+                                <div className="flex-1 text-center font-mono text-[10px] tracking-[0.3em] text-white/40 uppercase">
+                                    prit@workspace:~$ | SYS.TERMINAL_v2.5
+                                </div>
+                                <div className="flex items-center gap-4">
+                                    <div className="text-[10px] font-bold text-cyber-blue/60 tracking-widest uppercase flex items-center gap-2 hidden sm:flex">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-cyber-blue animate-pulse" /> ONLINE
+                                    </div>
+                                    <button 
+                                        onClick={() => setIsOpen(false)}
+                                        className="text-white/40 hover:text-white transition-colors p-1"
+                                        title="Close Terminal"
+                                    >
+                                        <X size={18} />
+                                    </button>
+                                </div>
                             </div>
-                            <button onClick={(e) => { e.stopPropagation(); setIsOpen(false); }} className="text-white/60 hover:text-white hover:rotate-90 transition-all p-2 bg-white/5 rounded-full glass border border-white/10">
-                                <X size={24} />
-                            </button>
-                        </div>
 
                             {/* Terminal Content */}
                             <div 
