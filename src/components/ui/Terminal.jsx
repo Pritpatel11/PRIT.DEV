@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Terminal as TerminalIcon, X, Maximize2 } from 'lucide-react';
+import { Terminal as TerminalIcon, X } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { projects } from '../../data/projects.js';
 
@@ -22,6 +22,7 @@ const Terminal = () => {
         { type: 'system', content: 'SYS.ID: PRIT_PATEL_v2.5.0' },
         { type: 'system', content: 'Type "help" to see available protocols.' }
     ]);
+    const [historyIndex, setHistoryIndex] = useState(-1);
     const scrollRef = useRef(null);
     const inputRef = useRef(null);
     const navigate = useNavigate();
@@ -104,14 +105,71 @@ const Terminal = () => {
                 newHistory.push({ type: 'error', content: `COMMAND_NOT_FOUND: "${action}". Type "help" for options.` });
         }
         setHistory(newHistory);
+        setHistoryIndex(-1);
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (input.trim()) {
-            handleCommand(input);
-            setInput('');
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            if (input.trim()) {
+                handleCommand(input);
+                setInput('');
+            }
+        } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            const inputsOnly = history.filter(h => h.type === 'input');
+            setHistoryIndex(prev => {
+                const newIndex = Math.min(prev + 1, inputsOnly.length - 1);
+                if (inputsOnly.length > 0) {
+                    setInput(inputsOnly[inputsOnly.length - 1 - newIndex]?.content || '');
+                }
+                return newIndex;
+            });
+        } else if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            const inputsOnly = history.filter(h => h.type === 'input');
+            setHistoryIndex(prev => {
+                const newIndex = Math.max(prev - 1, -1);
+                setInput(newIndex === -1 ? '' : inputsOnly[inputsOnly.length - 1 - newIndex]?.content || '');
+                return newIndex;
+            });
         }
+    };
+
+    const renderOutput = (content) => {
+        const urlRegex = /(https?:\/\/[^\s]+)/g;
+        const emailRegex = /([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/g;
+        const githubRegex = /(github\.com\/[^\s]+)/g;
+
+        let parts = content.split(urlRegex);
+        parts = parts.flatMap(part => 
+            urlRegex.test(part) ? [part] : part.split(emailRegex)
+        );
+        parts = parts.flatMap(part => 
+            (urlRegex.test(part) || emailRegex.test(part)) ? [part] : part.split(githubRegex)
+        );
+        
+        return parts.map((part, index) => {
+            if (urlRegex.test(part)) {
+                return (
+                    <a key={index} href={part} target="_blank" rel="noopener noreferrer" className="text-cyber-blue hover:underline transition-colors animate-pulse">
+                        {part}
+                    </a>
+                );
+            } else if (emailRegex.test(part)) {
+                return (
+                    <a key={index} href={`mailto:${part}`} className="text-cyber-blue hover:underline transition-colors">
+                        {part}
+                    </a>
+                );
+            } else if (githubRegex.test(part)) {
+                return (
+                    <a key={index} href={`https://${part}`} target="_blank" rel="noopener noreferrer" className="text-cyber-blue hover:underline transition-colors">
+                        {part}
+                    </a>
+                );
+            }
+            return <span key={index}>{part}</span>;
+        });
     };
 
     return (
@@ -120,89 +178,114 @@ const Terminal = () => {
                 {isOpen && (
                     <motion.div
                         initial={{ opacity: 0, backdropFilter: 'blur(0px)' }}
-                        animate={{ opacity: 1, backdropFilter: 'blur(20px)' }}
+                        animate={{ opacity: 1, backdropFilter: 'blur(15px)' }}
                         exit={{ opacity: 0, backdropFilter: 'blur(0px)' }}
-                        className="fixed inset-0 z-[150] bg-black/80 flex flex-col justify-end p-4 md:p-12 overflow-hidden"
+                        className="fixed inset-0 z-[150] bg-black/90 flex items-center justify-center p-4 md:p-8"
                         onClick={() => inputRef.current?.focus()}
                     >
                         {/* Massive Background Typography */}
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-5 flex flex-col items-center justify-center w-full">
-                            <h1 className="text-[15vw] font-black leading-none tracking-tighter text-transparent w-full text-center" style={{ WebkitTextStroke: '2px rgba(255,255,255,0.5)' }}>COMMAND</h1>
-                            <h1 className="text-[15vw] font-black leading-none tracking-tighter text-transparent w-full text-center" style={{ WebkitTextStroke: '2px rgba(255,255,255,0.5)' }}>CENTER</h1>
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-5 flex flex-col items-center justify-center w-full select-none">
+                            <h1 className="text-[12vw] font-black leading-none tracking-tighter text-transparent w-full text-center" style={{ WebkitTextStroke: '2px rgba(255,255,255,0.5)' }}>COMMAND</h1>
+                            <h1 className="text-[12vw] font-black leading-none tracking-tighter text-transparent w-full text-center" style={{ WebkitTextStroke: '2px rgba(255,255,255,0.5)' }}>CENTER</h1>
                         </div>
 
                         {/* Scanline Effect */}
-                        <div className="absolute inset-0 pointer-events-none opacity-20">
-                            <div className="w-full h-8 bg-cyber-blue shadow-[0_0_50px_rgba(0,242,255,0.5)] animate-scanline mix-blend-overlay" />
+                        <div className="absolute inset-0 pointer-events-none opacity-[0.05] overflow-hidden">
+                            <div className="w-full h-10 bg-cyber-blue animate-scanline" />
                         </div>
 
-                        {/* Top Header */}
-                        <div className="absolute top-8 left-8 right-8 flex justify-between items-start z-10">
-                            <div>
-                                <h2 className="text-cyber-blue font-bold tracking-[0.5em] text-sm md:text-xl">SYS.TERMINAL</h2>
-                                <p className="text-white/40 text-xs mt-1 md:text-sm uppercase tracking-widest">Awaiting Input Protocol</p>
+                        {/* Terminal Main Window */}
+                        <div className="w-full max-w-5xl bg-black/80 rounded-2xl overflow-hidden shadow-2xl border border-white/10 glass flex flex-col relative z-10 scale-95 md:scale-100">
+                            {/* Terminal Header (Apple Style) */}
+                            <div className="flex items-center gap-4 p-4 bg-white/5 border-b border-white/10">
+                                <div className="flex gap-2 items-center">
+                                    <div className="w-3 h-3 rounded-full bg-[#FF5F56] cursor-pointer hover:scale-110 transition-transform flex items-center justify-center group/close" onClick={() => setIsOpen(false)}>
+                                        <X size={8} className="text-black opacity-0 group-hover/close:opacity-100 transition-opacity" />
+                                    </div>
+                                    <div className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
+                                    <div className="w-3 h-3 rounded-full bg-[#27C93F]" />
+                                </div>
+                                <div className="flex-1 text-center font-mono text-[10px] tracking-[0.3em] text-white/40 uppercase">
+                                    prit@workspace:~$ | SYS.TERMINAL_v2.5
+                                </div>
+                                <div className="flex items-center gap-4">
+                                    <div className="text-[10px] font-bold text-cyber-blue/60 tracking-widest uppercase flex items-center gap-2 hidden sm:flex">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-cyber-blue animate-pulse" /> ONLINE
+                                    </div>
+                                    <button 
+                                        onClick={() => setIsOpen(false)}
+                                        className="text-white/40 hover:text-white transition-colors p-1"
+                                        title="Close Terminal"
+                                    >
+                                        <X size={18} />
+                                    </button>
+                                </div>
                             </div>
-                            <button onClick={(e) => { e.stopPropagation(); setIsOpen(false); }} className="text-white/60 hover:text-white hover:rotate-90 transition-all p-2 bg-white/5 rounded-full glass border border-white/10">
-                                <X size={24} />
-                            </button>
-                        </div>
 
-                        {/* Terminal Window (Bottom aligned) */}
-                        <div className="w-full max-w-5xl mx-auto h-[60vh] flex flex-col relative z-10 bg-black/40 glass border border-white/10 rounded-2xl md:p-8 p-4 shadow-[0_0_50px_rgba(0,0,0,0.8)]">
-                            <div
+                            {/* Terminal Content */}
+                            <div 
                                 ref={scrollRef}
-                                className="flex-grow font-mono text-sm md:text-base overflow-y-auto space-y-3 custom-scrollbar pr-4 text-white/80"
+                                className="h-[60vh] overflow-y-auto p-6 md:p-8 font-mono text-xs md:text-sm custom-scrollbar bg-black/20"
                             >
-                                {history.map((line, i) => (
-                                    <motion.div
-                                        initial={{ opacity: 0, x: -10 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        key={i}
-                                        className={`flex gap-3 leading-relaxed ${line.type === 'input' ? 'text-white' :
-                                            line.type === 'system' ? 'text-cyber-blue drop-shadow-[0_0_8px_rgba(0,242,255,0.5)]' :
-                                                line.type === 'error' ? 'text-red-400 drop-shadow-[0_0_8px_rgba(248,113,113,0.5)]' :
-                                                    'text-white/70'
-                                            }`}>
-                                        {line.type === 'input' ? (
-                                            <span className="text-cyber-purple font-black opacity-80 select-none">❯</span>
-                                        ) : (
-                                            <span className="opacity-0 select-none">❯</span>
-                                        )}
-                                        <span className="break-all">{line.content}</span>
-                                    </motion.div>
-                                ))}
+                                <div className="space-y-4">
+                                    {history.map((line, i) => (
+                                        <motion.div
+                                            initial={{ opacity: 0, x: -5 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            key={i}
+                                            className={`flex gap-3 leading-relaxed ${line.type === 'input' ? 'text-white' :
+                                                line.type === 'system' ? 'text-cyber-blue drop-shadow-[0_0_8px_rgba(var(--cyber-accent-rgb),0.5)]' :
+                                                    line.type === 'error' ? 'text-red-400' :
+                                                        'text-white/60'
+                                                }`}
+                                        >
+                                            <span className={`shrink-0 select-none ${line.type === 'input' ? 'text-cyber-purple' : 'opacity-0'}`}>❯</span>
+                                            <span className="whitespace-pre-wrap">{renderOutput(line.content)}</span>
+                                        </motion.div>
+                                    ))}
 
-                                <form onSubmit={handleSubmit} className="flex gap-3 items-center mt-4">
-                                    <span className="text-cyber-blue font-black animate-pulse select-none">❯</span>
-                                    <input
-                                        ref={inputRef}
-                                        type="text"
-                                        value={input}
-                                        onChange={(e) => setInput(e.target.value)}
-                                        className="bg-transparent border-none outline-none text-white w-full caret-cyber-blue font-bold tracking-wide"
-                                        spellCheck="false"
-                                        autoComplete="off"
-                                    />
-                                </form>
+                                    {/* Input Form */}
+                                    <div className="flex gap-3 items-center group">
+                                        <span className="text-cyber-blue font-black animate-pulse select-none">❯</span>
+                                        <input
+                                            ref={inputRef}
+                                            type="text"
+                                            value={input}
+                                            onChange={(e) => setInput(e.target.value)}
+                                            onKeyDown={handleKeyDown}
+                                            className="flex-1 bg-transparent border-none outline-none text-white caret-cyber-blue font-bold tracking-wide"
+                                            spellCheck="false"
+                                            autoComplete="off"
+                                            autoFocus
+                                        />
+                                        <div className="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-[8px] text-white/20 uppercase tracking-tighter hidden md:block group-focus-within:border-cyber-blue/30 group-focus-within:text-white/40 transition-colors">Return</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Footer / Hint Bar */}
+                            <div className="p-3 bg-white/5 border-t border-white/10 text-[9px] text-white/30 font-bold uppercase tracking-widest flex justify-between">
+                                <span>USE ↑/↓ ARROWS FOR HISTORY</span>
+                                <span className="text-cyber-blue/40">TYPE 'HELP' FOR PROTOCOLS</span>
                             </div>
                         </div>
                     </motion.div>
                 )}
             </AnimatePresence>
 
-            {/* Launch Button (Visible when closed) */}
+            {/* Floating Trigger Button */}
             <div className={`fixed ${isOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'} bottom-8 right-8 z-[100] transition-opacity duration-300`}>
                 <button
                     onClick={() => setIsOpen(true)}
                     data-cursor="terminal"
-                    className="w-14 h-14 glass rounded-full flex items-center justify-center transition-all shadow-lg border-white/10 text-white hover:text-cyber-blue hover:border-cyber-blue/50 group"
+                    className="w-14 h-14 glass rounded-full flex items-center justify-center transition-all shadow-xl border border-white/10 text-white hover:text-cyber-blue hover:border-cyber-blue/50 hover:shadow-cyber-blue/20 group"
                 >
-                    <TerminalIcon size={24} className="group-hover:scale-110 transition-transform" />
+                    <TerminalIcon size={24} className="group-hover:rotate-12 transition-transform" />
 
-                    {/* Ping Animation Indicator */}
+                    {/* Ping Indicator */}
                     <span className="absolute -top-1 -right-1 flex h-4 w-4">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyber-blue opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-4 w-4 bg-cyber-blue border border-black"></span>
+                        <span className="relative inline-flex rounded-full h-4 w-4 bg-cyber-blue border-2 border-black"></span>
                     </span>
                 </button>
             </div>
