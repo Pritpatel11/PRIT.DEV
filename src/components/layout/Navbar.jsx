@@ -70,7 +70,7 @@ const Navbar = () => {
                 </div>
 
                 {/* Mobile Toggle */}
-                <button className="md:hidden relative z-[60] p-2" onClick={() => setIsOpen(!isOpen)}>
+                <button aria-label="Toggle menu" className="md:hidden relative z-[60] p-2" onClick={() => setIsOpen(!isOpen)}>
                     <AnimatePresence mode="wait">
                         {isOpen ? (
                             <motion.div key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.2 }}>
