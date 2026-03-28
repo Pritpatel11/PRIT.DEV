@@ -30,6 +30,7 @@ const AccentSwitcher = () => {
                         {themes.map((theme) => (
                             <button
                                 key={theme.name}
+                                aria-label={`Switch to ${theme.name} theme`}
                                 onClick={() => setActiveTheme(theme)}
                                 className="flex items-center gap-3 px-3 py-2 rounded-xl border border-transparent hover:bg-white/5 transition-all group"
                             >
