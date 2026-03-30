@@ -203,6 +203,7 @@ const Contact = () => {
                         <button
                             onClick={() => setToast(null)}
                             className="ml-2 text-white/30 hover:text-white transition-colors text-lg"
+                            aria-label="Close notification"
                         >
                             ×
                         </button>
