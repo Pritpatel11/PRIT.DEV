@@ -216,6 +216,7 @@ const Terminal = () => {
                                         onClick={() => setIsOpen(false)}
                                         className="text-white/40 hover:text-white transition-colors p-1"
                                         title="Close Terminal"
+                                        aria-label="Close Terminal"
                                     >
                                         <X size={18} />
                                     </button>
