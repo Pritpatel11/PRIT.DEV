@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { TestimonialsColumn } from "./testimonials-columns-1.jsx";
 import { testimonials as rawTestimonials } from "../../data/testimonials.js";
 
