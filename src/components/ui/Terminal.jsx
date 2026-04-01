@@ -213,6 +213,7 @@ const Terminal = () => {
                                         <div className="w-1.5 h-1.5 rounded-full bg-cyber-blue animate-pulse" /> ONLINE
                                     </div>
                                     <button 
+                                        aria-label="Close Terminal"
                                         onClick={() => setIsOpen(false)}
                                         className="text-white/40 hover:text-white transition-colors p-1"
                                         title="Close Terminal"
