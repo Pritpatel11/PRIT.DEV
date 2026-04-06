@@ -5,6 +5,7 @@ const Button = ({
     variant = 'primary',
     className = '',
     icon: Icon,
+    disabled,
     ...props
 }) => {
     const variants = {
@@ -17,13 +18,14 @@ const Button = ({
 
     return (
         <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className={`px-6 py-2.5 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 group ${variants[variant]} ${className}`}
+            whileHover={disabled ? {} : { scale: 1.05 }}
+            whileTap={disabled ? {} : { scale: 0.95 }}
+            disabled={disabled}
+            className={`px-6 py-2.5 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyber-blue focus-visible:ring-offset-2 focus-visible:ring-offset-black ${variants[variant]} ${disabled ? 'opacity-50 cursor-not-allowed' : ''} ${className}`}
             {...props}
         >
             {children}
-            {Icon && <Icon size={18} className="group-hover:translate-x-1 transition-transform" />}
+            {Icon && <Icon size={18} className={`${!disabled ? 'group-hover:translate-x-1' : ''} transition-transform`} />}
         </motion.button>
     );
 };
