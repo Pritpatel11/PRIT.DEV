@@ -4,6 +4,7 @@ import globals from "globals";
 export default [
     js.configs.recommended,
     {
+        ignores: ["dist/**"],
         files: ["**/*.{js,jsx}"],
         languageOptions: {
             globals: {
