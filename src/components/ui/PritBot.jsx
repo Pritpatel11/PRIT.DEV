@@ -114,6 +114,7 @@ const PritBot = () => {
                         <div className="p-3 border-t border-white/10 bg-white/[0.02]">
                             <div className="flex gap-2">
                                 <input
+                                    aria-label="Message input"
                                     type="text"
                                     value={input}
                                     onChange={(e) => setInput(e.target.value)}
