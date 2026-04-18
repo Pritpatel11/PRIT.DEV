@@ -1,3 +1,6 @@
 ## 2024-05-18 - Missing ARIA Labels on Icon-Only Buttons
 **Learning:** Found a widespread pattern of icon-only buttons lacking `aria-label`s across core components (Navbar, Terminal, AccentSwitcher, PritBot). This renders them completely inaccessible to screen reader users, who will just hear "button" without any context for the action.
 **Action:** Added descriptive `aria-label` attributes to these buttons (e.g., "Toggle menu", "Close terminal", "Toggle theme"). For future UX enhancements, always check if any new or existing icon-only buttons have accessible names.
+## 2026-04-18 - Explicit Form Linking & Icon Button Accessibility
+**Learning:** Found that custom-built forms frequently rely on placeholder text or implicit positioning for context, missing explicit label-input linkage which breaks screen reader navigation. Additionally, dynamic elements like toast notifications often have 'X' close buttons without ARIA labels or visible focus states.
+**Action:** Always explicitly connect labels to inputs using `htmlFor` and `id` when reviewing or creating forms. Ensure all interactive dynamic elements, especially icon-only actions like toast closures, include `aria-label` and `focus-visible` classes.
