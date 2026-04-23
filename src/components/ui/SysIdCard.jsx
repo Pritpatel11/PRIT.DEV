@@ -64,7 +64,8 @@ const SysIdCard = ({ tech }) => {
                 )}
 
                 {/* Cyberpunk Scanline */}
-                <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.03] pointer-events-none mix-blend-overlay" />
+                {/* Missing noise.png referenced here, temporarily removed to pass strict build. */}
+                <div className="absolute inset-0 bg-transparent opacity-[0.03] pointer-events-none mix-blend-overlay" />
 
                 {/* Top Label */}
                 <div className="absolute top-2 left-3 right-3 flex justify-between items-center opacity-30">
