@@ -250,6 +250,7 @@ const Terminal = () => {
                                         <input
                                             ref={inputRef}
                                             type="text"
+                                            aria-label="Terminal input"
                                             value={input}
                                             onChange={(e) => setInput(e.target.value)}
                                             onKeyDown={handleKeyDown}
