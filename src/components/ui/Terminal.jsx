@@ -248,6 +248,7 @@ const Terminal = () => {
                                     <div className="flex gap-3 items-center group">
                                         <span className="text-cyber-blue font-black animate-pulse select-none">❯</span>
                                         <input
+                                            aria-label="Terminal command"
                                             ref={inputRef}
                                             type="text"
                                             value={input}
