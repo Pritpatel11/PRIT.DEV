@@ -7,3 +7,5 @@
 
   ➜  Local:   http://localhost:5173/
   ➜  Network: use --host to expose
+6:13:17 AM [vite] vite.config.js changed, restarting server...
+6:13:18 AM [vite] server restarted.
