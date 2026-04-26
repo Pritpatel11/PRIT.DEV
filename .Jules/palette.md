@@ -1,3 +1,6 @@
 ## 2024-05-18 - Missing ARIA Labels on Icon-Only Buttons
 **Learning:** Found a widespread pattern of icon-only buttons lacking `aria-label`s across core components (Navbar, Terminal, AccentSwitcher, PritBot). This renders them completely inaccessible to screen reader users, who will just hear "button" without any context for the action.
 **Action:** Added descriptive `aria-label` attributes to these buttons (e.g., "Toggle menu", "Close terminal", "Toggle theme"). For future UX enhancements, always check if any new or existing icon-only buttons have accessible names.
+## 2026-04-26 - Missing Form Labels and ARIA Label on Close Button
+**Learning:** Discovered that the contact form in `src/pages/Contact.jsx` lacked `id` attributes on inputs and corresponding `htmlFor` attributes on labels, making it less accessible for screen readers and reducing the clickable area for users. Also found that the toast notification close button lacked an `aria-label`. This highlights a recurring issue in this project where visual layout took precedence over semantic, accessible HTML for interactive elements.
+**Action:** Added proper semantic linking for all form fields and an `aria-label` to the toast close button. For future enhancements, meticulously check custom components and forms for semantic correctness and accessible names.
