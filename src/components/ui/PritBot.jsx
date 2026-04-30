@@ -120,7 +120,6 @@ const PritBot = () => {
                                     onKeyPress={(e) => e.key === 'Enter' && handleSend()}
                                     placeholder="Ask me something..."
                                     className="flex-grow bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-[11px] text-white outline-none focus:border-cyber-purple/50 transition-colors"
-                                    aria-label="Chat message input"
                                 />
                                 <button
                                     aria-label="Send message"

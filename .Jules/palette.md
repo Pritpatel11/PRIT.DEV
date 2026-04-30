@@ -1,7 +1,3 @@
 ## 2024-05-18 - Missing ARIA Labels on Icon-Only Buttons
 **Learning:** Found a widespread pattern of icon-only buttons lacking `aria-label`s across core components (Navbar, Terminal, AccentSwitcher, PritBot). This renders them completely inaccessible to screen reader users, who will just hear "button" without any context for the action.
 **Action:** Added descriptive `aria-label` attributes to these buttons (e.g., "Toggle menu", "Close terminal", "Toggle theme"). For future UX enhancements, always check if any new or existing icon-only buttons have accessible names.
-
-## 2026-04-30 - Missing Accessible Labels on Form Inputs
-**Learning:** Found a widespread pattern of form inputs lacking accessible names across core components (Contact page form, Terminal, PritBot). Inputs without visible text labels (like chat inputs and terminal inputs) lacked `aria-label`s, and standard form inputs with visible labels were not explicitly linked to them using `htmlFor` and `id` attributes. This makes navigation and context understanding difficult for screen reader users, and linking standard labels improves usability by increasing the clickable area for focus.
-**Action:** Added explicit `htmlFor` and `id` bindings to standard form labels and inputs, and added descriptive `aria-label` attributes to standalone inputs. For future UX enhancements, ensure all form controls have an accessible name programmatically associated with them.
