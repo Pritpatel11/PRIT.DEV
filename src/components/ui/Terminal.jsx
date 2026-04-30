@@ -257,6 +257,7 @@ const Terminal = () => {
                                             spellCheck="false"
                                             autoComplete="off"
                                             autoFocus
+                                            aria-label="Terminal input"
                                         />
                                         <div className="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-[8px] text-white/20 uppercase tracking-tighter hidden md:block group-focus-within:border-cyber-blue/30 group-focus-within:text-white/40 transition-colors">Return</div>
                                     </div>
