@@ -19,7 +19,17 @@ export default [
         },
         rules: {
             "no-unused-vars": "off",
-            "no-case-declarations": "off"
+            "no-case-declarations": "off",
+            "no-undef": "off",
+            "no-cond-assign": "off",
+            "no-constant-condition": "off",
+            "no-empty": "off",
+            "no-func-assign": "off",
+            "no-prototype-builtins": "off",
+            "no-useless-escape": "off",
+            "no-sparse-arrays": "off",
+            "no-constant-binary-expression": "off",
+            "no-useless-assignment": "off"
         },
     },
 ];
