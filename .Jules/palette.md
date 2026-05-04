@@ -1,3 +1,6 @@
 ## 2024-05-18 - Missing ARIA Labels on Icon-Only Buttons
 **Learning:** Found a widespread pattern of icon-only buttons lacking `aria-label`s across core components (Navbar, Terminal, AccentSwitcher, PritBot). This renders them completely inaccessible to screen reader users, who will just hear "button" without any context for the action.
 **Action:** Added descriptive `aria-label` attributes to these buttons (e.g., "Toggle menu", "Close terminal", "Toggle theme"). For future UX enhancements, always check if any new or existing icon-only buttons have accessible names.
+## 2024-05-04 - Form Label Association and Icon Button Accessibility
+**Learning:** React requires `htmlFor` on `<label>` elements to associate them programmatically with input fields, whereas standard HTML uses `for`. Without this explicit linkage, screen readers often fail to announce the field's purpose, and users miss the expanded click target area for input focus. Additionally, simple text elements like `×` used as close buttons are opaque to assistive tech unless explicitly labelled.
+**Action:** Always link form labels to inputs using matching `htmlFor` and `id` attributes. Always add an `aria-label` to buttons containing only symbols or icons.
