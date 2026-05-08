@@ -1,0 +1,29 @@
+import Badge from '../components/ui/Badge.jsx';
+import Button from '../components/ui/Button.jsx';
+import { Terminal } from 'lucide-react';
+
+# Initializing the Systems Log
+
+Welcome to the new **Systems Log**! This isn't just a regular markdown blog. Because it runs on MDX, we can embed actual interactive React components directly into the text.
+
+Here is an example of a Badge component rendered from Markdown:
+
+<Badge variant="pink">SYSTEM_ONLINE</Badge>
+
+### Why MDX?
+
+Standard markdown is great for documentation, but when building a highly interactive portfolio, you want your blog posts to be just as dynamic.
+
+- **Component Reusability:** Use the same buttons, cards, and sliders that you use on your main site.
+- **Interactivity:** Embed code playgrounds, data visualizations, or Custom Cursors directly into articles.
+- **Consistency:** Everything inherits the global Tailwind styles and Framer Motion animations.
+
+### Example Interactive Button
+
+<div className="my-8 flex justify-center">
+    <Button variant="neon" icon={Terminal} onClick={() => alert('Component clicked from inside Markdown!')}>
+        INTERACTIVE_NODE
+    </Button>
+</div>
+
+This changes everything about how case studies and technical logs can be written. Enjoy the new powers!

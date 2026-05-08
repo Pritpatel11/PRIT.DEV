@@ -7,6 +7,7 @@ import Badge from '../components/ui/Badge.jsx';
 import WorkTimeline from '../components/ui/WorkTimeline.jsx';
 import SEO from '../components/ui/SEO.jsx';
 import DecryptedText from '../components/animations/DecryptedText.jsx';
+import DecryptButton from '../components/ui/DecryptButton.jsx';
 
 const About = () => {
     return (
@@ -37,7 +38,7 @@ const About = () => {
                                 </div>
                                 <h2 className="text-2xl font-bold tracking-tight uppercase">USER_BIO</h2>
                             </div>
-                            <div className="prose prose-invert max-w-none">
+                            <div className="prose prose-invert max-w-none mb-8">
                                 <p className="text-xl text-white/70 leading-relaxed font-medium">
                                     I am <span className="text-white font-bold text-2xl border-b-2 border-cyber-blue font-outline">PRIT_PATEL</span>,
                                     a Creative Developer architecting high-fidelity digital manifestations.
@@ -47,6 +48,7 @@ const About = () => {
                                     that push the boundaries of the modern web.
                                 </p>
                             </div>
+                            <DecryptButton fileUrl="/prit patel_Resume.pdf" fileName="prit patel_Resume.pdf" />
                         </FadeIn>
 
                         <FadeIn delay={0.2}>

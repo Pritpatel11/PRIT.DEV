@@ -46,6 +46,18 @@ const CustomCursor = () => {
         return () => window.removeEventListener('resize', check);
     }, []);
 
+    // Manage global cursor style
+    useEffect(() => {
+        if (!isTouchDevice) {
+            document.body.style.cursor = 'none';
+        } else {
+            document.body.style.cursor = 'auto';
+        }
+        return () => {
+            document.body.style.cursor = 'auto';
+        };
+    }, [isTouchDevice]);
+
     useEffect(() => {
         if (isTouchDevice) return;
         const handleMouseMove = (e) => {

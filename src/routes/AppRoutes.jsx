@@ -5,6 +5,8 @@ import About from '../pages/About.jsx';
 import Work from '../pages/Work.jsx';
 import CaseStudy from '../pages/CaseStudy.jsx';
 import Contact from '../pages/Contact.jsx';
+import Logs from '../pages/Logs.jsx';
+import BlogPost from '../pages/BlogPost.jsx';
 import PageTransition from '../components/animations/PageTransition.jsx';
 
 const AppRoutes = () => {
@@ -18,6 +20,8 @@ const AppRoutes = () => {
                 <Route path="/work" element={<PageTransition><Work /></PageTransition>} />
                 <Route path="/project/:slug" element={<PageTransition><CaseStudy /></PageTransition>} />
                 <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
+                <Route path="/logs" element={<PageTransition><Logs /></PageTransition>} />
+                <Route path="/logs/:slug" element={<PageTransition><BlogPost /></PageTransition>} />
             </Routes>
         </AnimatePresence>
     );

@@ -9,12 +9,14 @@ import CustomCursor from './components/ui/CustomCursor.jsx';
 import AccentSwitcher from './components/ui/AccentSwitcher.jsx';
 import Terminal from './components/ui/Terminal.jsx';
 import Preloader from './components/ui/Preloader.jsx';
+import ScrollToTop from './components/ui/ScrollToTop.jsx';
 
 function App() {
     const [loading, setLoading] = useState(true);
 
     return (
         <Router>
+            <ScrollToTop />
             <AnimatePresence mode="wait">
                 {loading ? (
                     <Preloader key="loader" onComplete={() => setLoading(false)} />

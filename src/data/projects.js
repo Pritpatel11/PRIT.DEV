@@ -1,22 +1,23 @@
 export const projects = [
-    // {
-    //     id: 1,
-    //     slug: 'propera-ai',
-    //     title: 'Propera: Real Estate AI',
-    //     description: 'An intelligent property valuation engine utilizing machine learning algorithms to predict market trends with 94.2% accuracy.',
-    //     tags: ['AI', 'Python', 'React', 'TensorFlow'],
-    //     image: 'propera-hero.jpg',
-    //     category: 'AI Powered',
-    //     demoLink: '#',
-    //     sourceLink: 'https://github.com/pritpatel11',
-    //     challenge: 'Real estate investors were drowning in disconnected data. Accessing market trends, predictive pricing, and demographic shifts required subscriptions to five different legacy platforms, none of which communicated with each other.',
-    //     solution: 'I engineered a bespoke Predictive Market Analysis Platform. By leveraging a Python-based microservices architecture, we created a pipeline that aggregates data from MLS, public records, and social sentiment APIs.',
-    //     features: [
-    //         { title: 'Instant Valuation', desc: 'Reduced report generation time from 4H to 45 seconds.' },
-    //         { title: 'Neural Matching', desc: 'Custom ML model matching investors to properties with 85% accuracy.' }
-    //     ],
-    //     techStack: ['React', 'Node.js', 'Python', 'TensorFlow', 'PostgreSQL', 'AWS Lambda', 'FastAPI', 'Docker']
-    // },
+    {
+        id: 1,
+        slug: 'smart-land-registry',
+        title: 'AI Smart Land Registry',
+        description: 'An AI-powered system for analyzing land documents and streamlining the registry process using advanced machine learning algorithms.',
+        tags: ['Gen-AI', 'React', 'Node.js', 'RAG'],
+        image: 'Home.png',
+        category: 'AI Powered',
+        demoLink: '#',
+        sourceLink: 'https://github.com/Pritpatel11/AI-Based-Smart-Land-Document-Analysis-Registry-Assistant-System',
+        gridSize: 'lg:col-span-1 lg:row-span-1',
+        challenge: 'The traditional land registry process is highly manual, error-prone, and time-consuming, requiring significant effort for document verification.',
+        solution: 'Developed an intelligent platform that leverages AI to automatically extract key data from land documents, verify information, and assist in the registry workflow.',
+        features: [
+            { title: 'Automated Analysis', desc: 'AI-driven data extraction and verification from complex land records.' },
+            { title: 'Registry Assistant', desc: 'Streamlined workflow management to accelerate the overall registration process.' }
+        ],
+        techStack: ['React', 'Node.js', 'RAG', 'GenAI']
+    },
     {
         id: 3,
         slug: 'duo-studio',

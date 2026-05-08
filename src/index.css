@@ -26,16 +26,9 @@ body {
   color: var(--text-main);
   @apply overflow-x-hidden transition-colors duration-500;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  cursor: none;
 }
 
-@media (max-width: 1024px) {
 
-  html,
-  body {
-    cursor: auto;
-  }
-}
 
 @media (max-width: 640px) {
   .container {

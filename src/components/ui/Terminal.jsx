@@ -6,11 +6,13 @@ import { projects } from '../../data/projects.js';
 
 const COMMANDS = {
     help: 'List all available commands',
-    about: 'Display personal profile information',
+    whoami: 'Display personal profile information',
     projects: 'Show recent project showcase',
     contact: 'Display contact and social details',
     clear: 'Clear terminal history',
-    goto: 'Navigate to a page (e.g., goto work)',
+    cd: 'Navigate to a directory (e.g., cd /work)',
+    cat: 'Read file contents (e.g., cat resume.pdf)',
+    goto: 'Legacy navigation command',
     theme: 'Change accent color (e.g., theme blue/purple/green/pink)',
 };
 
@@ -54,6 +56,7 @@ const Terminal = () => {
                 });
                 break;
             case 'about':
+            case 'whoami':
                 newHistory.push({ type: 'output', content: 'IDENTITY: Prit Patel' });
                 newHistory.push({ type: 'output', content: 'ROLE: Full Stack Engineer' });
                 newHistory.push({ type: 'output', content: 'FOCUS: Creative Coding & Modern Architecture' });
@@ -72,15 +75,39 @@ const Terminal = () => {
                 setHistory([{ type: 'system', content: 'SYSTEM_CLEARED' }]);
                 return;
             case 'goto':
-                const path = args[0];
-                if (['work', 'about', 'contact', 'home'].includes(path)) {
+            case 'cd':
+                let path = args[0] || '';
+                // Handle paths like /work or work
+                if (path.startsWith('/')) path = path.substring(1);
+                
+                if (['work', 'about', 'contact', 'home', ''].includes(path)) {
                     newHistory.push({ type: 'system', content: `NAVIGATING_TO: /${path}` });
                     setTimeout(() => {
-                        navigate(path === 'home' ? '/' : `/${path}`);
+                        navigate(path === 'home' || path === '' ? '/' : `/${path}`);
                         setIsOpen(false);
                     }, 500);
                 } else {
                     newHistory.push({ type: 'error', content: `ERROR: Path "/${path || ''}" not found.` });
+                }
+                break;
+            case 'cat':
+                if (args[0] === 'resume.pdf' || args[0] === 'cv.pdf' || args[0] === 'prit patel_Resume.pdf') {
+                    newHistory.push({ type: 'system', content: 'INITIATING_DECRYPTION_PROTOCOL...' });
+                    
+                    // Simulate decryption delay
+                    setTimeout(() => {
+                        setHistory(current => [...current, { type: 'system', content: 'ACCESS_GRANTED. DOWNLOADING...' }]);
+                        
+                        // Trigger download
+                        const link = document.createElement('a');
+                        link.href = '/prit patel_Resume.pdf';
+                        link.download = 'prit patel_Resume.pdf';
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                    }, 1500);
+                } else {
+                    newHistory.push({ type: 'error', content: `cat: ${args[0] || ''}: No such file or directory` });
                 }
                 break;
             case 'theme':
