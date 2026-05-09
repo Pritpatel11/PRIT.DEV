@@ -119,8 +119,9 @@ const Contact = () => {
 
                                 <form onSubmit={handleSubmit} className="space-y-8">
                                     <div className="space-y-2">
-                                        <label className="text-[10px] font-bold text-cyber-blue tracking-widest block uppercase">NAME &gt;</label>
+                                        <label htmlFor="contact-name" className="text-[10px] font-bold text-cyber-blue tracking-widest block uppercase">NAME &gt;</label>
                                         <input
+                                            id="contact-name"
                                             type="text"
                                             required
                                             placeholder="Enter identification..."
@@ -131,8 +132,9 @@ const Contact = () => {
                                     </div>
 
                                     <div className="space-y-2">
-                                        <label className="text-[10px] font-bold text-cyber-blue tracking-widest block uppercase">EMAIL &gt;</label>
+                                        <label htmlFor="contact-email" className="text-[10px] font-bold text-cyber-blue tracking-widest block uppercase">EMAIL &gt;</label>
                                         <input
+                                            id="contact-email"
                                             type="email"
                                             required
                                             placeholder="user@domain.ext"
@@ -143,8 +145,9 @@ const Contact = () => {
                                     </div>
 
                                     <div className="space-y-2">
-                                        <label className="text-[10px] font-bold text-cyber-blue tracking-widest block uppercase">MESSAGE &gt;</label>
+                                        <label htmlFor="contact-message" className="text-[10px] font-bold text-cyber-blue tracking-widest block uppercase">MESSAGE &gt;</label>
                                         <textarea
+                                            id="contact-message"
                                             required
                                             rows="4"
                                             placeholder="Begin transmission..."
@@ -202,6 +205,7 @@ const Contact = () => {
                         <span className="text-sm font-bold">{toast.message}</span>
                         <button
                             onClick={() => setToast(null)}
+                            aria-label="Close notification"
                             className="ml-2 text-white/30 hover:text-white transition-colors text-lg"
                         >
                             ×
