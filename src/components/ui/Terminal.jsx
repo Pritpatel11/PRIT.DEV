@@ -276,6 +276,7 @@ const Terminal = () => {
                                         <span className="text-cyber-blue font-black animate-pulse select-none">❯</span>
                                         <input
                                             ref={inputRef}
+                                            aria-label="Terminal command input"
                                             type="text"
                                             value={input}
                                             onChange={(e) => setInput(e.target.value)}
