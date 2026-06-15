@@ -201,6 +201,7 @@ const Contact = () => {
                     >
                         <span className="text-sm font-bold">{toast.message}</span>
                         <button
+                            aria-label="Close notification"
                             onClick={() => setToast(null)}
                             className="ml-2 text-white/30 hover:text-white transition-colors text-lg"
                         >

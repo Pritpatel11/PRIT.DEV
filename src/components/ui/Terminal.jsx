@@ -226,7 +226,7 @@ const Terminal = () => {
                             {/* Terminal Header (Apple Style) */}
                             <div className="flex items-center gap-4 p-4 bg-white/5 border-b border-white/10">
                                 <div className="flex gap-2 items-center">
-                                    <div className="w-3 h-3 rounded-full bg-[#FF5F56] cursor-pointer hover:scale-110 transition-transform flex items-center justify-center group/close" onClick={() => setIsOpen(false)}>
+                                    <div role="button" aria-label="Close Terminal" tabIndex={0} onKeyDown={(e) => { if(e.key === 'Enter' || e.key === ' ') setIsOpen(false); }} className="w-3 h-3 rounded-full bg-[#FF5F56] cursor-pointer hover:scale-110 transition-transform flex items-center justify-center group/close" onClick={() => setIsOpen(false)}>
                                         <X size={8} className="text-black opacity-0 group-hover/close:opacity-100 transition-opacity" />
                                     </div>
                                     <div className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
@@ -240,6 +240,7 @@ const Terminal = () => {
                                         <div className="w-1.5 h-1.5 rounded-full bg-cyber-blue animate-pulse" /> ONLINE
                                     </div>
                                     <button 
+                                        aria-label="Close Terminal"
                                         onClick={() => setIsOpen(false)}
                                         className="text-white/40 hover:text-white transition-colors p-1"
                                         title="Close Terminal"
