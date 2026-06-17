@@ -1,3 +1,3 @@
-## 2024-05-18 - Missing ARIA Labels on Icon-Only Buttons
-**Learning:** Found a widespread pattern of icon-only buttons lacking `aria-label`s across core components (Navbar, Terminal, AccentSwitcher, PritBot). This renders them completely inaccessible to screen reader users, who will just hear "button" without any context for the action.
-**Action:** Added descriptive `aria-label` attributes to these buttons (e.g., "Toggle menu", "Close terminal", "Toggle theme"). For future UX enhancements, always check if any new or existing icon-only buttons have accessible names.
+## 2024-05-18 - Explicitly Link Stylized Labels to Inputs
+**Learning:** Stylized, terminal-like text (e.g., `<label>NAME &gt;</label>`) used as form labels can easily be mistaken for purely decorative content by both screen readers and sighted users. If they lack `for`/`id` linking, they fail WCAG criteria, and without a `cursor-pointer` class, users won't realize clicking the label focuses the input.
+**Action:** Always explicitly link `<label>` tags to their inputs using `htmlFor` and `id`, and add utility classes like `cursor-pointer` to labels in heavily stylized UI components to visually signal clickability.
