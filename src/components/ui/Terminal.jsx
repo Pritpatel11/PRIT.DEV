@@ -280,6 +280,7 @@ const Terminal = () => {
                                             value={input}
                                             onChange={(e) => setInput(e.target.value)}
                                             onKeyDown={handleKeyDown}
+                                            aria-label="Terminal command"
                                             className="flex-1 bg-transparent border-none outline-none text-white caret-cyber-blue font-bold tracking-wide"
                                             spellCheck="false"
                                             autoComplete="off"
