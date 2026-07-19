@@ -7,4 +7,7 @@ export default defineConfig({
         { enforce: 'pre', ...mdx() },
         react()
     ],
+    build: {
+        chunkSizeWarningLimit: 1000
+    }
 })
