@@ -40,7 +40,7 @@ function DockIcon({ mouseX, item }) {
     let width = useSpring(widthSync, { mass: 0.1, stiffness: 150, damping: 12 });
 
     return (
-        <Link to={item.path}>
+        <Link to={item.path} aria-label={item.name}>
             <motion.div
                 ref={ref}
                 style={{ width }}
