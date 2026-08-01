@@ -16,7 +16,7 @@ const Contact = () => {
     ]);
 
     // ⚠️ PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL HERE
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzjemFpp0NmagzY08HzC73LygfScdkUj1Tu52LcDoUddCQmbL1Vgq0xC_TPpAz1ZO-z/exec';
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwBMvua3L_iUFBPiWXmbnBKUbBKeRfBqqx6_OuGcdFXoGM23pxqOV-zhQLkBIqeZirXGw/exec';
 
     const handleSubmit = async (e) => {
         e.preventDefault();

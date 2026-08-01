@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {
@@ -14,7 +14,10 @@ import {
     Layers,
     Calendar,
     User,
-    ArrowUpRight
+    ArrowUpRight,
+    ShieldAlert,
+    X,
+    Building2
 } from 'lucide-react';
 import { projects } from '../data/projects.js';
 import Button from '../components/ui/Button.jsx';
@@ -28,9 +31,19 @@ gsap.registerPlugin(ScrollTrigger);
 
 const CaseStudy = () => {
     const { slug } = useParams();
-    const project = projects.find(p => p.slug === slug);
+    const projectIndex = projects.findIndex(p => p.slug === slug);
+    const project = projects[projectIndex];
+    const displayId = String(projectIndex + 1).padStart(2, '0');
     const containerRef = useRef(null);
     const imageRef = useRef(null);
+    const [showPrivacyAlert, setShowPrivacyAlert] = useState(false);
+
+    const handlePrivateLinkClick = (e) => {
+        if (project.slug === 'industrial-erp-system') {
+            e.preventDefault();
+            setShowPrivacyAlert(true);
+        }
+    };
 
     useEffect(() => {
         if (!project) return;
@@ -98,7 +111,7 @@ const CaseStudy = () => {
 
                     <div className="flex items-center gap-3">
                         <div className="w-2 h-2 rounded-full bg-cyber-blue animate-pulse" />
-                        <span className="text-[10px] font-bold tracking-widest text-cyber-blue uppercase">LOG_ID: CASE_0{project.id}</span>
+                        <span className="text-[10px] font-bold tracking-widest text-cyber-blue uppercase">LOG_ID: CASE_{displayId}</span>
                     </div>
                 </div>
 
@@ -123,12 +136,12 @@ const CaseStudy = () => {
                         <div className="lg:col-span-4 flex flex-col items-start lg:items-end gap-6 pb-2">
                             <div className="flex flex-wrap gap-3 sm:gap-4">
                                 <Magnetic strength={0.3}>
-                                    <a href={project.demoLink} target="_blank" rel="noopener noreferrer">
+                                    <a href={project.demoLink} target="_blank" rel="noopener noreferrer" onClick={handlePrivateLinkClick}>
                                         <Button variant="primary" icon={ArrowUpRight} className="px-8">LIVE_APP</Button>
                                     </a>
                                 </Magnetic>
                                 <Magnetic strength={0.3}>
-                                    <a href={project.sourceLink} target="_blank" rel="noopener noreferrer">
+                                    <a href={project.sourceLink} target="_blank" rel="noopener noreferrer" onClick={handlePrivateLinkClick}>
                                         <Button variant="outline" icon={Github} className="px-8">CODEBASE</Button>
                                     </a>
                                 </Magnetic>
@@ -236,10 +249,20 @@ const CaseStudy = () => {
                             <h4 className="text-[10px] font-black tracking-[0.3em] text-white/20 mb-8 uppercase">META_DATA_REPORT</h4>
 
                             <div className="space-y-6">
+                                {project.client && (
+                                    <div className="space-y-1">
+                                        <div className="flex items-center gap-2 text-cyber-blue">
+                                            <Building2 size={12} className="shrink-0" />
+                                            <span className="text-[10px] font-bold tracking-[0.2em] uppercase">CLIENT / OWNER</span>
+                                        </div>
+                                        <p className="text-sm font-bold text-cyber-blue leading-tight neon-glow-blue tracking-wide">{project.client}</p>
+                                    </div>
+                                )}
+
                                 <div className="space-y-1">
                                     <div className="flex items-center gap-2 text-cyber-blue">
                                         <User size={12} className="shrink-0" />
-                                        <span className="text-[10px] font-black tracking-[0.2em] uppercase">POSITION</span>
+                                        <span className="text-[10px] font-bold tracking-[0.2em] uppercase">POSITION</span>
                                     </div>
                                     <p className="text-sm font-bold text-white/90 leading-tight">Lead Systems Architect</p>
                                 </div>
@@ -282,6 +305,59 @@ const CaseStudy = () => {
                     </aside>
                 </div>
             </div>
+
+            {/* Privacy Alert Modal */}
+            <AnimatePresence>
+                {showPrivacyAlert && (
+                    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+                        <motion.div 
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+                            onClick={() => setShowPrivacyAlert(false)}
+                        />
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                            className="relative w-full max-w-lg glass border-cyber-pink/50 rounded-2xl p-6 sm:p-8 overflow-hidden shadow-[0_0_50px_rgba(255,42,109,0.15)]"
+                        >
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-cyber-pink/20 blur-[60px] rounded-full -mr-16 -mt-16 pointer-events-none" />
+                            
+                            <button 
+                                onClick={() => setShowPrivacyAlert(false)}
+                                className="absolute top-4 right-4 p-2 text-white/50 hover:text-white hover:bg-white/10 rounded-full transition-colors"
+                            >
+                                <X size={20} />
+                            </button>
+
+                            <div className="flex items-start gap-5 mb-6 relative z-10">
+                                <div className="p-3 glass border-cyber-pink/30 rounded-xl text-cyber-pink shrink-0 shadow-[0_0_15px_rgba(255,42,109,0.3)]">
+                                    <ShieldAlert size={28} />
+                                </div>
+                                <div>
+                                    <h3 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-white mb-1">Access Restricted</h3>
+                                    <div className="text-[10px] font-black tracking-widest text-cyber-pink uppercase mb-4">Security Protocol Active</div>
+                                    <p className="text-white/70 leading-relaxed text-sm sm:text-base font-medium">
+                                        This is confidential, private software developed for <strong>Neeta Engineering Works</strong>. To protect company privacy and sensitive data, the source code and live demo are not publicly available.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div className="flex justify-end pt-4 border-t border-white/10 relative z-10">
+                                <Button 
+                                    variant="outline" 
+                                    className="!border-cyber-pink/50 hover:!bg-cyber-pink/10 hover:!text-cyber-pink text-white"
+                                    onClick={() => setShowPrivacyAlert(false)}
+                                >
+                                    UNDERSTOOD
+                                </Button>
+                            </div>
+                        </motion.div>
+                    </div>
+                )}
+            </AnimatePresence>
         </div>
     );
 };

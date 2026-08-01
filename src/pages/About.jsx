@@ -63,7 +63,7 @@ const About = () => {
                                 className="border-l-4 border-l-cyber-purple bg-gradient-to-r from-cyber-purple/5 to-transparent"
                             >
                                 <h3 className="text-lg font-bold mb-1 uppercase">B.Tech - Information Technology</h3>
-                                <p className="text-cyber-purple/80 font-bold text-sm mb-3">3RD YEAR UNDERGRADUATE</p>
+                                <p className="text-cyber-purple/80 font-bold text-sm mb-3">4TH YEAR UNDERGRADUATE</p>
                                 <p className="text-white/60">
                                     U.V. Patel College of Engineering, Ganpat University
                                 </p>
@@ -98,23 +98,7 @@ const About = () => {
                                 </Card>
 
                                 <Card
-                                    data-cursor="neeta"
-                                    className="border-l-4 border-l-cyber-blue bg-white/[0.02]"
-                                >
-                                    <div className="flex items-center gap-3 mb-4 text-cyber-blue">
-                                        <Factory size={20} />
-                                        <h4 className="font-bold uppercase tracking-widest text-sm">CURRENT_PROJECT</h4>
-                                    </div>
-                                    <h3 className="text-xl font-bold mb-2 uppercase">Neeta Engineering Works</h3>
-                                    <p className="text-white/60 text-sm leading-relaxed">
-                                        I am currently building a <strong>showcase website</strong> for <strong>Neeta Engineering Works</strong>,
-                                        a specialized manufacturing factory. This project is designed to professionally showcase
-                                        their company profile, industrial expertise, and decades of manufacturing experience
-                                        through a sophisticated digital interface.
-                                    </p>
-                                </Card>
-                                <Card
-                                    data-cursor="DEV Corporation"
+                                    data-cursor="neeta-erp"
                                     className="border-l-4 border-l-cyber-blue bg-white/[0.02] relative overflow-hidden group"
                                 >
                                     {/* Scanline animation */}
@@ -131,13 +115,13 @@ const About = () => {
                                                 <span className="text-[8px] font-bold text-cyber-blue">ACTIVE_INTEL</span>
                                             </div>
                                         </div>
-                                        <h3 className="text-xl font-bold mb-2 uppercase tracking-tighter">DEV Corporation</h3>
+                                        <h3 className="text-xl font-bold mb-1 uppercase tracking-tighter">Industrial ERP System</h3>
+                                        <h4 className="text-xs font-bold tracking-widest text-cyber-blue mb-4 uppercase">Neeta Engineering Works</h4>
                                         <p className="text-white/60 text-sm leading-relaxed">
-                                            Currently <strong>spearheading the development</strong> of a <strong>digital brand identity</strong> for
-                                            <strong>DEV Corporation</strong>, a leading manufacturer of <strong>HT/LT line materials</strong>.
-                                            I am transforming their extensive <strong>industrial legacy</strong> into a <strong>modern showcase website</strong>,
-                                            focusing on <strong>SEO-optimized product catalogs</strong>, <strong>high-performance UI</strong>,
-                                            and a professional interface that highlights their expertise in the <strong>energy and solar power sectors</strong>.
+                                            Currently engineering a comprehensive <strong>Full-Stack ERP System</strong> for <strong>Neeta Engineering Works</strong>. 
+                                            I am transforming their manual operations into a <strong>digitized manufacturing workflow</strong>, 
+                                            focusing on <strong>real-time inventory management</strong>, automated <strong>A4 Delivery Challans & Invoices</strong>, 
+                                            and integrating a custom <strong>AI Data Assistant (Google Gemini)</strong> to handle complex inventory queries naturally.
                                         </p>
                                     </div>
                                 </Card>

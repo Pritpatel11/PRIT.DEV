@@ -5,7 +5,7 @@ import FadeIn from '../components/animations/FadeIn.jsx';
 import SlideIn from '../components/animations/SlideIn.jsx';
 import Button from '../components/ui/Button.jsx';
 import ProjectCard from '../components/ui/ProjectCard.jsx';
-import TechGrid from '../components/ui/TechGrid.jsx';
+import TechOrbit from '../components/ui/TechOrbit.jsx';
 import Testimonials from '../components/ui/Testimonials.jsx';
 import { projects } from '../data/projects.js';
 import TextReveal from '../components/animations/TextReveal.jsx';
@@ -82,12 +82,13 @@ const Home = () => {
                             TECH <span className="text-cyber-purple">STACK</span>
                         </h2>
                         <p className="text-white/40 max-w-xl mx-auto">
-                            A comprehensive toolkit of modern technologies I use to build robust applications.
+                            A comprehensive toolkit of modern technologies I use to build robust applications. <br/>
+                            <span className="text-cyber-blue text-xs font-bold uppercase tracking-widest">[ Hover to inspect the Full Stack Core ]</span>
                         </p>
                     </SlideIn>
                 </div>
 
-                <TechGrid />
+                <TechOrbit />
             </section>
 
             {/* Project Showcase Section */}

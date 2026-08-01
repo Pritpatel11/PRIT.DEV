@@ -1,5 +1,25 @@
 export const projects = [
     {
+        id: 2,
+        slug: 'industrial-erp-system',
+        title: 'Industrial ERP System',
+        description: 'A comprehensive, full-stack ERP system developed for Neeta Engineering Works to streamline manufacturing, inventory, and billing operations.',
+        tags: ['React', 'Node.js', 'MongoDB', 'ERP'],
+        image: 'erp-dashboard.png',
+        category: 'Enterprise Software',
+        client: 'Neeta Engineering Works',
+        demoLink: '#',
+        sourceLink: '#',
+        gridSize: 'lg:col-span-2 lg:row-span-2',
+        challenge: 'Streamlining complex manufacturing workflows and generating pixel-perfect A4 printable documents (Challans/Invoices) directly from the browser without layout breaks.',
+        solution: 'Developed a custom MERN stack ERP with automated PDF generation for billing, real-time stock tracking, and an integrated Google Gemini AI chatbot for inventory queries.',
+        features: [
+            { title: 'Automated Billing', desc: 'A4-sized printable Delivery Challans and Proforma invoices with automatic GST calculations.' },
+            { title: 'AI Data Assistant', desc: 'Integrated AI chatbot using Google Gemini API to query inventory status naturally.' }
+        ],
+        techStack: ['React.js', 'Tailwind CSS', 'Node.js', 'Express.js', 'MongoDB', 'Google Gemini AI']
+    },
+    {
         id: 1,
         slug: 'smart-land-registry',
         title: 'AI Smart Land Registry',
