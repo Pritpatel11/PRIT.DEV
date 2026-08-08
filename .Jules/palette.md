@@ -1,0 +1,3 @@
+## 2024-08-04 - Form Label Accessibility in Stylized UI
+**Learning:** In stylized React components with custom inputs, form labels are often completely disconnected from their respective inputs. While they look visually appealing as text above an input field, screen readers fail to associate the label with the input, severely harming accessibility.
+**Action:** Always verify that `<label>` elements have an `htmlFor` attribute that strictly matches the `id` of its corresponding `<input>` or `<textarea>`. Additionally, add the `cursor-pointer` class to the label so users know it is clickable and can focus the input field.
