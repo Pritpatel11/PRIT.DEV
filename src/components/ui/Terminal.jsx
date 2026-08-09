@@ -240,6 +240,7 @@ const Terminal = () => {
                                         <div className="w-1.5 h-1.5 rounded-full bg-cyber-blue animate-pulse" /> ONLINE
                                     </div>
                                     <button 
+                                        aria-label="Close terminal"
                                         onClick={() => setIsOpen(false)}
                                         className="text-white/40 hover:text-white transition-colors p-1"
                                         title="Close Terminal"
@@ -275,6 +276,7 @@ const Terminal = () => {
                                     <div className="flex gap-3 items-center group">
                                         <span className="text-cyber-blue font-black animate-pulse select-none">❯</span>
                                         <input
+                                            aria-label="Terminal command input"
                                             ref={inputRef}
                                             type="text"
                                             value={input}
