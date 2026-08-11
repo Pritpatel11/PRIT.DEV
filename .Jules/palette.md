@@ -1,0 +1,3 @@
+## 2026-08-11 - Explicit Form Label Clickability
+**Learning:** When building highly stylized forms where standard native inputs are visually abstracted (e.g., cyberpunk themes), users rely heavily on labels. If labels aren't explicitly associated with `htmlFor` and given a `cursor-pointer` class, they lose their native clickable hit area that focuses the input, degrading the UX, especially on touch devices or for accessibility tool users.
+**Action:** Always pair `htmlFor` with `id` for every form field, and add `cursor-pointer` to custom stylized labels to preserve and signal native interaction patterns.
