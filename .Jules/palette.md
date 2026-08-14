@@ -7,3 +7,6 @@
 ## 2024-08-14 - Netlify Strict CI Missing Assets
 **Learning:** Vite build warnings (e.g., missing asset references like `/noise.png`) are treated as fatal errors in strict CI environments (like Netlify).
 **Action:** Ensure all referenced assets exist, or remove the references to prevent deployment failures.
+## 2024-08-14 - Netlify Strict CI Lint Rules
+**Learning:** In some setups, running `pnpm lint` without scoping to `src/` will cause ESLint to evaluate build artifacts in `dist/`, triggering hundreds of fatal CI errors.
+**Action:** Modify `package.json` to scope the lint command explicitly to the source directory: `"lint": "eslint src/ --ext js,jsx ..."`.
