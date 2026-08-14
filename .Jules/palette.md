@@ -4,3 +4,6 @@
 ## 2024-08-14 - Netlify Strict CI Redirect Rules
 **Learning:** Netlify strict CI checks for "Redirect rules" and "Header rules" may fail if files like `public/_redirects` contain irregular spacing or trailing whitespace.
 **Action:** Format redirect rules cleanly (e.g., `/* /index.html 200`) with exactly one space between tokens to ensure successful deployment.
+## 2024-08-14 - Netlify Strict CI Missing Assets
+**Learning:** Vite build warnings (e.g., missing asset references like `/noise.png`) are treated as fatal errors in strict CI environments (like Netlify).
+**Action:** Ensure all referenced assets exist, or remove the references to prevent deployment failures.
