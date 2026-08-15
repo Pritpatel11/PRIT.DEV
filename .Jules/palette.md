@@ -1,0 +1,3 @@
+## 2025-02-17 - Stylized Form Labels Breaking Click-to-Focus
+**Learning:** When form labels are highly stylized (e.g., small, uppercase, widely spaced tracking) to look like terminal output or UI decorative elements, users and screen readers still rely on native label-to-input association. Without explicitly linking them via `htmlFor` and `id`, native click-to-focus behavior is broken, making forms slightly frustrating to use, especially on mobile or for users who click the text instead of the input area directly.
+**Action:** Always link form labels to their inputs using `htmlFor` and `id`, and add utility classes like `cursor-pointer` to stylized labels so that users get visual feedback that the label is an interactive element that will focus the input.
