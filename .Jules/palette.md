@@ -1,0 +1,3 @@
+## 2026-08-17 - Contact Form Accessibility Enhancements
+**Learning:** Found that custom stylized forms in the application (like the terminal-themed form in Contact.jsx) often lack explicit programmatic associations between labels and their corresponding inputs/textareas (missing `htmlFor` and `id` pairs). Also noticed that custom toast notification close buttons lacked `aria-label` attributes for screen readers.
+**Action:** Always ensure that custom-styled label components explicitly use `htmlFor` that matches the input `id`, and add `cursor-pointer` utility classes to visually signal clickability. Add `aria-label` to any icon-only or generic character (like '×') close buttons in UI components.
