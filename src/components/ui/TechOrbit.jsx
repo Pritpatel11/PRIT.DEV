@@ -92,7 +92,7 @@ const TechOrbit = () => {
             <div className="relative w-full aspect-square md:aspect-video bg-[#050505] rounded-3xl border border-white/5 shadow-2xl flex items-center justify-center orbit-container group">
                 
                 {/* Background Details */}
-                <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.03] pointer-events-none mix-blend-overlay" />
+                <div className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-overlay" />
                 <div className="absolute inset-0 scanline-v opacity-10 pointer-events-none" />
 
                 {/* Scaling container for responsiveness */}
