@@ -1,0 +1,3 @@
+## 2025-02-24 - Explicit Form Label Binding and Visual Cues
+**Learning:** In custom stylized UI components (like terminal-themed forms), developers often omit explicit label bindings (`htmlFor`/`id`) and visual cues (like `cursor-pointer` for text elements functioning as interactive labels), which severely degrades accessibility and general UX (e.g. clicking the label text to focus the input doesn't work).
+**Action:** Always enforce strict semantic HTML for forms, particularly by linking labels to inputs with `htmlFor` and `id`, and ensure interactive UI elements visibly signal their clickability with classes like `cursor-pointer`.
