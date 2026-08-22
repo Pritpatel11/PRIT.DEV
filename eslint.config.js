@@ -5,10 +5,12 @@ export default [
     js.configs.recommended,
     {
         files: ["**/*.{js,jsx}"],
+        ignores: ["dist/**"],
         languageOptions: {
             globals: {
                 ...globals.browser,
-                ...globals.node
+                ...globals.node,
+                __REACT_DEVTOOLS_GLOBAL_HOOK__: "readonly"
             },
             parserOptions: {
                 ecmaFeatures: {
