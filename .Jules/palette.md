@@ -1,0 +1,3 @@
+## 2024-03-24 - Explicit Form Label Linking
+**Learning:** In heavily stylized custom form components where native input fields are customized (like removing borders and applying transparent backgrounds), users who rely on clicking labels for input focus or screen readers face difficulties if `htmlFor` and `id` are not explicitly linked. A secondary issue is that labels in these layouts may not look clickable by default.
+**Action:** Always link form `<label>` to its corresponding `<input>`/`<textarea>` with explicit `htmlFor`/`id` pairs, and add the `cursor-pointer` utility to the label to visually indicate clickability and reinforce the association.
