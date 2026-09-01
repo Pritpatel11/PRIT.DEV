@@ -1,0 +1,3 @@
+## 2025-02-14 - Semantic HTML and Interactive States
+**Learning:** Using stylized React components and Tailwind CSS can often lead to accidentally dropping semantic HTML requirements like linking `label` to `input` using `htmlFor` and `id`. Additionally, visual cues of interactivity like `cursor-pointer` are sometimes forgotten on these components, making it hard for users to perceive them as actionable.
+**Action:** Always explicitly link `label` to `input`/`textarea` via `htmlFor` and `id`, apply `cursor-pointer` to labels to signal clickability, and ensure interactive elements that lack text content (e.g. icon-only buttons or terminal inputs) have descriptive `aria-label` attributes.
