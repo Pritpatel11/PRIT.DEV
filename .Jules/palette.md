@@ -1,0 +1,3 @@
+## 2024-03-20 - Stylized Form Label Clickability
+**Learning:** Users (especially on touch devices or using a mouse) expect to be able to click on a label to focus its corresponding input field, even when the UI has a highly stylized, non-traditional design (like a terminal interface). Without visual cues like a pointer cursor, this functionality is hidden.
+**Action:** Always add `cursor-pointer` to `label` elements associated with inputs to visually signal clickability, especially in custom-designed UI components where standard browser label behaviors might not be immediately apparent, alongside ensuring correct semantic linkage with `htmlFor` and `id`.
