@@ -115,6 +115,7 @@ const PritBot = () => {
                             <div className="flex gap-2">
                                 <input
                                     type="text"
+                                    aria-label="Chat input"
                                     value={input}
                                     onChange={(e) => setInput(e.target.value)}
                                     onKeyPress={(e) => e.key === 'Enter' && handleSend()}
