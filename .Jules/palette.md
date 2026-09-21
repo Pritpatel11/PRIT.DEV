@@ -1,0 +1,3 @@
+## 2024-09-21 - Form Labels & Icon-only Buttons
+**Learning:** Custom styled terminal forms often lack semantic HTML label associations (`htmlFor` + `id`) and visual clickability cues for labels, reducing accessibility for screen reader users and missing a standard UX expectation (clicking labels to focus inputs). Additionally, custom toast notifications frequently omit `aria-label` attributes on icon-only close buttons.
+**Action:** Always pair `htmlFor` on labels with `id` on inputs, add `cursor-pointer` to labels in stylized UI to signal interactability, and ensure icon-only buttons (like toast close buttons) have descriptive `aria-label`s.
