@@ -7,7 +7,7 @@ import {
     SiFramer,
     SiGit,
     SiHtml5,
-    SiCss,
+    SiCss3,
     SiJavascript,
     SiMongodb,
     SiGreensock,
@@ -17,7 +17,7 @@ import {
 
 export const techStack = [
     { name: 'html', icon: SiHtml5, color: '#E44D26' },
-    { name: 'css', icon: SiCss, color: '#1572B6' },
+    { name: 'css', icon: SiCss3, color: '#1572B6' },
     { name: 'js', icon: SiJavascript, color: '#F7DF1E' },
     { name: 'React', icon: SiReact, color: '#61DAFB' },
     { name: 'TypeScript', icon: SiTypescript, color: '#3178C6' },
