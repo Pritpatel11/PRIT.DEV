@@ -39,6 +39,7 @@ const Work = () => {
                         {categories.map((cat) => (
                             <button
                                 key={cat}
+                                aria-label={`Filter by ${cat}`}
                                 onClick={() => setFilter(cat)}
                                 className={`px-4 py-2 rounded-full text-sm font-bold tracking-widest uppercase transition-all duration-300 border ${
                                     filter === cat 
