@@ -326,8 +326,9 @@ const CaseStudy = () => {
                             <div className="absolute top-0 right-0 w-32 h-32 bg-cyber-pink/20 blur-[60px] rounded-full -mr-16 -mt-16 pointer-events-none" />
                             
                             <button 
+                                aria-label="Close privacy alert"
                                 onClick={() => setShowPrivacyAlert(false)}
-                                className="absolute top-4 right-4 p-2 text-white/50 hover:text-white hover:bg-white/10 rounded-full transition-colors"
+                                className="absolute top-4 right-4 p-2 text-white/50 hover:text-white hover:bg-white/10 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyber-pink"
                             >
                                 <X size={20} />
                             </button>
