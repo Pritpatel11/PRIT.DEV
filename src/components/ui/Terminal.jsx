@@ -274,7 +274,7 @@ const Terminal = () => {
                                     {/* Input Form */}
                                     <div className="flex gap-3 items-center group">
                                         <span className="text-cyber-blue font-black animate-pulse select-none">❯</span>
-                                        <input
+                                        <input aria-label="Terminal input"
                                             ref={inputRef}
                                             type="text"
                                             value={input}
