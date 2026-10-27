@@ -119,11 +119,11 @@ const Contact = () => {
 
                                 <form onSubmit={handleSubmit} className="space-y-8">
                                     <div className="space-y-2">
-                                        <label className="text-[10px] font-bold text-cyber-blue tracking-widest block uppercase">NAME &gt;</label>
+                                        <label htmlFor="name" className="text-[10px] font-bold text-cyber-blue tracking-widest block uppercase cursor-pointer">NAME &gt;</label>
                                         <input
                                             type="text"
                                             required
-                                            placeholder="Enter identification..."
+                                            id="name" placeholder="Enter identification..."
                                             className="w-full bg-transparent border-b border-white/10 py-2 focus:border-cyber-blue outline-none transition-colors text-white placeholder:text-white/10"
                                             value={form.name}
                                             onChange={(e) => setForm({ ...form, name: e.target.value })}
@@ -131,11 +131,11 @@ const Contact = () => {
                                     </div>
 
                                     <div className="space-y-2">
-                                        <label className="text-[10px] font-bold text-cyber-blue tracking-widest block uppercase">EMAIL &gt;</label>
+                                        <label htmlFor="email" className="text-[10px] font-bold text-cyber-blue tracking-widest block uppercase cursor-pointer">EMAIL &gt;</label>
                                         <input
                                             type="email"
                                             required
-                                            placeholder="user@domain.ext"
+                                            id="email" placeholder="user@domain.ext"
                                             className="w-full bg-transparent border-b border-white/10 py-2 focus:border-cyber-blue outline-none transition-colors text-white placeholder:text-white/10"
                                             value={form.email}
                                             onChange={(e) => setForm({ ...form, email: e.target.value })}
@@ -143,11 +143,11 @@ const Contact = () => {
                                     </div>
 
                                     <div className="space-y-2">
-                                        <label className="text-[10px] font-bold text-cyber-blue tracking-widest block uppercase">MESSAGE &gt;</label>
+                                        <label htmlFor="message" className="text-[10px] font-bold text-cyber-blue tracking-widest block uppercase cursor-pointer">MESSAGE &gt;</label>
                                         <textarea
                                             required
                                             rows="4"
-                                            placeholder="Begin transmission..."
+                                            id="message" placeholder="Begin transmission..."
                                             className="w-full bg-transparent border border-white/10 rounded-lg p-4 focus:border-cyber-blue outline-none transition-colors text-white placeholder:text-white/10 resize-none"
                                             value={form.message}
                                             onChange={(e) => setForm({ ...form, message: e.target.value })}
@@ -200,7 +200,7 @@ const Contact = () => {
                             }`}
                     >
                         <span className="text-sm font-bold">{toast.message}</span>
-                        <button
+                        <button aria-label="Close toast"
                             onClick={() => setToast(null)}
                             className="ml-2 text-white/30 hover:text-white transition-colors text-lg"
                         >
